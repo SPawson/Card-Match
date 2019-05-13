@@ -88,7 +88,7 @@ h1 {
 }
 
 .card.visible {
-      transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 /*.card:hover .card-back{
@@ -119,11 +119,11 @@ h1 {
     transform: scale(0.99);
 }
 
-.card-front{
+.card-front {
     position: absolute;
     transform: rotateY(180deg);
     background-color: grey;
-    
+
 }
 
 /********************
@@ -135,14 +135,42 @@ h1 {
     min-height: 100%;
 }
 
-.player-info-container{
+.player-info-container {
     margin: 15px auto;
     background-color: #e0c975;
     border: 1px solid #e0c975;
     border-radius: 5px;
 }
 
+.player-stats {
+    margin-bottom: 15px;
+}
 
+.divider {
+    width: 25%;
+    border: 1px solid black;
+    margin-top: -5px;
+}
+
+/********************
+    Icon-Container
+*********************/
+.icon-container{
+    text-align: center;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    padding: 25px 0;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 0px;
+    text-align: center;
+    color: #fafafa;
+    background: #8f8f8f;
+    margin: 0px 5px;;
+}
 
 @font-face {
     font-family: 'game-of-thrones';
