@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GOT | Match Them All</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles/css/main.css" type="text/css" />
 
 
@@ -22,10 +23,37 @@
         </div>
 
         <div class="row content-row">
-            <div class="col-md-3 score-container"></div>
-
-
-            <!---- Game Container-->
+            <div class="col-md-3 score-container">
+                <div class="container-fluid">
+                    <div class="player-info-container">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <h2 id="name">Name</h2>
+                                <hr>
+                                <h3>Score</h3>
+                                <hr>
+                                <div class="score">
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                    <span class="star"><i class="fas fa-star"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-6 matches">
+                                <h4>Matches</h4>
+                                <p id="matches">0/6</p>
+                            </div>
+                            <div class="col-6 remaining">
+                                <h4>Remaining</h4>
+                                <p id="remaining">6/6</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-9 game-container container-fluid">
                 <div class="row game-info-container text-center">
                     <div class="time-container col-md-6">
@@ -35,12 +63,89 @@
                         <h3>Turns: <span id="turns-count">0</span></h3>
                     </div>
                 </div>
-               
+                <div class="row ">
+                    <div class="col-12 card-container">
+                        <div class="card visible">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front "></div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
-
-
     </div>
+
+    <!---- Game Container-->
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

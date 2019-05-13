@@ -66,6 +66,65 @@ h1 {
     margin-bottom: 30px;
 }
 
+/********************
+    Cards
+*********************/
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 25px;
+    justify-content: center;
+    margin-bottom: 45px
+}
+
+.card {
+    height: 203px;
+    width: 145px;
+    background-color: transparent;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+}
+
+.card.visible {
+      transform: rotateY(180deg);
+}
+
+/*.card:hover .card-back{
+    transform: rotateY(180deg);
+}
+
+.card:hover .card-front{
+    transform: rotateY(0);
+}*/
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+}
+
+.card-back {
+    position: absolute;
+    justify-content: center;
+    transition: 200ms ease-in-out;
+}
+
+.card-back img:hover {
+    transform: scale(0.99);
+}
+
+.card-front{
+    position: absolute;
+    transform: rotateY(180deg);
+    background-color: grey;
+    
+}
 
 /********************
     Score-Container
@@ -75,6 +134,15 @@ h1 {
     background-color: #733e3e;
     min-height: 100%;
 }
+
+.player-info-container{
+    margin: 15px auto;
+    background-color: #e0c975;
+    border: 1px solid #e0c975;
+    border-radius: 5px;
+}
+
+
 
 @font-face {
     font-family: 'game-of-thrones';
