@@ -9,15 +9,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles/css/main.css" type="text/css" />
-    
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/main.js" async></script>
 
 
 </head>
 
 <body>
-
+    <audio id="bgMusic">
+        
+    </audio>
+    
     <div id="wrapper">
         <div class="row">
             <header class="container-fluid ">
@@ -96,7 +99,7 @@
                                 <img src="assets/images/card-front/large/danny-large.png" alt="front of card"></img>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card" onclick="">
                             <div class="card-back card-face">
                                 <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
                             </div>
@@ -149,7 +152,7 @@
                                 <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
-                                 <img src="assets/images/card-front/large/mel-large.png" alt="front of card"></img>
+                                <img src="assets/images/card-front/large/mel-large.png" alt="front of card"></img>
                             </div>
                         </div>
                         <div class="card">
@@ -157,7 +160,7 @@
                                 <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
-                                 <img src="assets/images/card-front/large/tyrion-large.png" alt="front of card"></img>
+                                <img src="assets/images/card-front/large/tyrion-large.png" alt="front of card"></img>
                             </div>
                         </div>
                         <div class="card">
@@ -208,8 +211,35 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Start</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="">Start</button>
                     <button type="button" class="btn btn-primary">Rules</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--- Score Screen Modal-->
+    <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="scoreModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="scoreModalCenterTitle">Congratulations</h5>
+                    <span aria-hidden="true">&times;</span>
+                </div>
+                <div class="modal-body">
+                        <h3>You scored:</h3>
+                        <div class="score">
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <p id="endGameMessage"></p>
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Play Again</button>
                 </div>
             </div>
         </div>
