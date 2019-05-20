@@ -1,12 +1,24 @@
-describe('Start game button initialises the game',function(){
+describe('Check javascript has loaded correctly',function(){
     
-    it('should call the startGame() when button pressed', function() {
+    it('Audio Controller is defined', function() {
         //arrange
-        var test = 1;
+        
         //act
         
         //assert
-        expect(true).toBe(true);
+        expect(AudioController).toBeDefined();
     })
     
+    it('Class CardMatch is defined', function() {
+        //arrange
+        
+        //act
+        
+        //assert
+        expect(CardMatch).toBeDefined();
+    })
+    
+    it()
+    
 })
+
