@@ -91,7 +91,7 @@ class CardMatch {
         }
 }
 
-$(function() {
+$(document).ready(function() {
         $("#startModal").modal('show');
 
         let cards = $('.card');
