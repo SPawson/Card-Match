@@ -57,22 +57,64 @@ class CardMatch {
                 let temp = 0;
                 for (let i = this.cardArray.length - 1; i > 0; i--) {
                         randomIndex = Math.floor(Math.random() * (i + 1));
-                        
-                        
-                      
+
+
+
                         $(this.cardArray[randomIndex]).css('order', i);
                         $(this.cardArray[i]).css('order', randomIndex);
                 }
         }
 
+        hideCard = function() {
+                $(this.cardArray).each(function() {
+                        $(this).removeClass('visible')
+                })
+        }
+        
+        configureTimeOut = function(audio,shuffle,timeR,busy,countdown,countdownFunc){
+                 setTimeout(function() {
+                        audio;
+                        shuffle;
+                        timeR = countdown;
+                        busy = false;
+                        countdown = countdownFunc;
+                        
+                        /*this.audioController.startMusic();
+                        this.shuffleCards(this.cardArray);
+                        this.timeRemaining = this.countdown;
+                        this.busy = false;
+                        this.countDown = this.startCountdown();*/
+
+                }, 500)
+        }
+
         startGame = function() {
+                let audioBgMusic = this.audioController.startMusic();
+                let shuffle = this.shuffleCards(this.cardArray);
+                let timeRemaining = this.timeRemaining;
+                let busy = this.busy;
+                let countdown = this.countdown;
+                let countdownFunc = this.startCountdown(this.timeRemaining,this.timer)
+                
                 this.cardToBeChecked = null;
                 this.totalClicks = 0;
                 this.timeRemaining = this.totalTime;
                 this.matchedCards = [];
                 this.busy = true;
 
-                this.shuffleCards(this.cardArray);
+                this.configureTimeOut(audioBgMusic,shuffle,timeRemaining,busy,countdown,countdownFunc)
+               
+                this.timer = this.timer.text(this.timeRemaining)
+                this.turns = this.turns.text(this.totalClicks);
+                this.hideCard();
+
+        }
+
+        startCountdown = function(timeR,timer) {
+                return setInterval(function() {
+                        timeR--;
+                        timer.text(timeR);
+                }, 1000)
         }
 
 
