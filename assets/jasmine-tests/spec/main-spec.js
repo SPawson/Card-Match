@@ -18,7 +18,19 @@ describe('Check javascript has loaded correctly',function(){
         expect(CardMatch).toBeDefined();
     })
     
-    it()
+     it('Class CardMatch is defined', function() {
+        //arrange
+        
+        //act
+        
+        //assert
+        expect(CardMatch).toBeDefined();
+    })
+    
+    it('Class ScoreController is defined', function(){
+        
+        expect(ScoreController).toBeDefined();
+    }) 
     
 })
 
@@ -53,5 +65,9 @@ describe('Check game initialises correctly' , function() {
     
     it('Modal should be loaded into the DOM' , function(){
         expect($('#startModal')[0]).toBeInDOM()
+    })
+    
+    it('Game start should be called when start pressed', function(){
+        
     })
 })

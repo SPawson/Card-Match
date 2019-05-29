@@ -82,26 +82,117 @@ class ScoreController {
         oneStarMessage = function() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.oneStar);
+                $('#star1').addClass('star-gold');
         }
 
         twoStarMessage = function() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.twoStar);
+                $('#star1').addClass('star-gold');
+                $('#star2').addClass('star-gold');
         }
 
         threeStarMessage = function() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.threeStar);
+                $('#star1').addClass('star-gold');
+                $('#star2').addClass('star-gold');
+                $('#star3').addClass('star-gold');
         }
 
         fourStarMessage = function() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.fourStar);
+                $('#star1').addClass('star-gold');
+                $('#star2').addClass('star-gold');
+                $('#star3').addClass('star-gold');
+                $('#star4').addClass('star-gold');
         }
 
         fiveStarMessage = function() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.fiveStar);
+                $('#star1').addClass('star-gold');
+                $('#star2').addClass('star-gold');
+                $('#star3').addClass('star-gold');
+                $('#star4').addClass('star-gold');
+                $('#star5').addClass('star-gold');
+        }
+        
+        scoreCalculator = function(timeRemaining,totalTime,cardsArray,turns) {
+                this.score = this.timeCalculator(timeRemaining,totalTime) + this.turnsCalculator(turns,cardsArray);
+                
+                if(this.score >= 90) {
+                        this.fiveStarMessage();
+                }
+                else if(this.score >= 70) {
+                        this.fourStarMessage();
+                }
+                else if(this.score >= 50) {
+                        this.threeStarMessage();
+                }
+                 else if(this.score >= 30) {
+                        this.twoStarMessage();
+                }
+                 else if(this.score >= 20) {
+                        this.oneStarMessage();
+                }
+        }
+        
+        timeCalculator = function(timeRemaining,totalTime) {
+                this.percentages = totalTime/5;
+                this.oneStarTime = this.percentages*0.5;
+                this.twoStarTime = this.percentages*1.5;
+                this.threeStarTime = this.percentages*2.5;
+                this.fourStarTime = this.percentages*3.5;
+                this.fiveStarTime = this.percentages*4.5;
+                
+                //Calculate a score based on the amount of time remaining
+                
+                if(timeRemaining >= this.fiveStarTime) {
+                        return 50;
+                }
+                else if(timeRemaining < this.fiveStarTime && timeRemaining >= this.fourStarTime){
+                        return 40;
+                }
+                else if(timeRemaining < this.fourStarTime && timeRemaining >= this.threeStarTime){
+                        return 30;
+                }
+                 else if(timeRemaining < this.threeStarTime && timeRemaining >= this.twoStarTime){
+                        return 20;
+                }
+                  else if(timeRemaining < this.twoStarTime){
+                        return 10;
+                }
+                
+                
+                
+                
+        }
+        
+        turnsCalculator = function(turns,cardArray) {
+                this.numberOfCards = cardArray.length;
+                this.oneStarTurns = this.numberOfCards*3;
+                this.twoStarTurns = this.numberOfCards*2.5;
+                this.threeStarTurns = this.numberOfCards*2.1;
+                this.fourStarTurns = this.numberOfCards*1.8;
+                this.fiveStarTurns = this.numberOfCards*1.5;
+                
+                 if(turns <= this.fiveStarTurns) {
+                        return 50;
+                }
+                else if (turns > this.fiveStarTurns && turns <= this.fourStarTurns) {
+                        return 40;
+                }
+                else if (turns > this.fourStarTurns && turns <= this.threeStarTurns) {
+                        return 30;
+                }
+                else if (turns > this.threeStarTurns && turns <= this.twoStarTurns) {
+                        return 20;
+                }
+                else if (turns > this.oneStarTurns) {
+                         return 10;
+                }
         }
 }
 
@@ -221,7 +312,7 @@ class CardMatch {
         victory = function() {
                 clearInterval(this.countDown);
                 this.audioController.success();
-                this.score.fiveStarMessage();
+                this.score.scoreCalculator(this.timeRemaining,this.totalTime,this.cardArray,this.totalClicks);
                 $('#scoreModal').modal('show')
 
         }
@@ -317,7 +408,7 @@ class CardMatch {
         }
 
         canCardFlip = function(card) {
-                
+
                 let cardValue = this.getCardType(card);
                 if (!this.busy && !this.matchedCards.includes(cardValue) && card !== this.cardToBeChecked) {
                         return true;
