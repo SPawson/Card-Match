@@ -61,7 +61,7 @@ class AudioController {
 }
 
 class ScoreController {
-        constructor() {
+        constructor(cardsArray) {
                 this.failTitle = 'Fail';
                 this.failMessage = 'That was a disaster';
                 this.successTitle = 'Completed'
@@ -70,6 +70,8 @@ class ScoreController {
                 this.threeStar = 'Not a bad attempt'
                 this.fourStar = 'Well done, thats a great effort'
                 this.fiveStar = 'Excellent the knights of the realm will be thrilled with you!'
+                
+                this.numberOfCards = cardsArray.length;
 
                 this.scoreTitle = $('#scoreTitle');
                 this.scoreMessage = $('#endGameMessage')
@@ -119,8 +121,8 @@ class ScoreController {
                 $('#star5').addClass('star-gold');
         }
         
-        scoreCalculator = function(timeRemaining,totalTime,cardsArray,turns) {
-                this.score = this.timeCalculator(timeRemaining,totalTime) + this.turnsCalculator(turns,cardsArray);
+        scoreCalculator = function(timeRemaining,totalTime,turns) {
+                this.score = this.timeCalculator(timeRemaining,totalTime) + this.turnsCalculator(turns);
                 
                 if(this.score >= 90) {
                         this.fiveStarMessage();
@@ -170,8 +172,7 @@ class ScoreController {
                 
         }
         
-        turnsCalculator = function(turns,cardArray) {
-                this.numberOfCards = cardArray.length;
+        turnsCalculator = function(turns) {
                 this.oneStarTurns = this.numberOfCards*3;
                 this.twoStarTurns = this.numberOfCards*2.5;
                 this.threeStarTurns = this.numberOfCards*2.1;
@@ -194,6 +195,16 @@ class ScoreController {
                          return 10;
                 }
         }
+        
+        matchDisplay = function(matches){
+                let matchesEl = $('#matches');
+                let amountEl = $('amount');
+                
+                matchesEl.html(matches);
+                amountEl.html(this.numberOfCards);
+                
+        }
+        
 }
 
 class CardMatch {
@@ -204,9 +215,10 @@ class CardMatch {
                 this.timer = $('#time-remaining');
                 this.turns = $('#turns-count');
                 this.totalClicks = 0
+                this.numMatches
 
                 this.audioController = new AudioController();
-                this.score = new ScoreController();
+                this.score = new ScoreController(this.cardArray);
         }
 
         //Randomises the card layout by shuffling the grid order
@@ -267,6 +279,7 @@ class CardMatch {
                 this.busy = true;
                 this.audioController.muteMusic();
                 this.setName();
+                this.numMatches = 0
 
                 setTimeout(() => {
                         /*audio;
@@ -312,7 +325,7 @@ class CardMatch {
         victory = function() {
                 clearInterval(this.countDown);
                 this.audioController.success();
-                this.score.scoreCalculator(this.timeRemaining,this.totalTime,this.cardArray,this.totalClicks);
+                this.score.scoreCalculator(this.timeRemaining,this.totalTime,this.cardArray,);
                 $('#scoreModal').modal('show')
 
         }
@@ -376,21 +389,18 @@ class CardMatch {
 
 
         cardMatched = function(card1, card2) {
+                
+                this.busy= true;
                 this.audioController.match();
+                setTimeout(() => {
+                       this.busy = false;
+
+                }, 500)
+                
                 this.matchedCards.push(card1[0]);
                 this.matchedCards.push(card2[0]);
-
-                /*setTimeout(() => {
-
-                        $(card1[1]).addClass('match');
-                        $(card2[1]).addClass('match');
-
-
-                        this.busy = false;
-
-                }, 1000)*/
-
-
+                this.numMatches++;
+                this.score.matchDisplay(this.numMatches);
 
                 console.log(this.cardMatched);
 
