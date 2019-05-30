@@ -202,6 +202,12 @@ h1,h2,h3,h4,h5,h6 {
     border-color: #7b4e4e;
 }
 
+.btn-drkred:hover{
+    background-color: #734848;
+    border-color: #734848;
+}
+
+
 @font-face {
     font-family: 'game-of-thrones';
     src: url('../../fonts/game-of-thrones.ttf') format('tff');

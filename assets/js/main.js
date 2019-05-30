@@ -39,17 +39,17 @@ class AudioController {
 
         muteMusic = function() {
                 let soundBtn = $('#sound');
-               
-                        if (soundBtn.hasClass('fa-volume-up')) {
-                                soundBtn.removeClass('fa-volume-up');
-                                soundBtn.addClass('fa-volume-mute');
-                                this.stopMusic();
-                        }
-                        else {
-                                soundBtn.removeClass('fa-volume-mute');
-                                soundBtn.addClass('fa-volume-up');
-                                this.startMusic();
-                        }
+
+                if (soundBtn.hasClass('fa-volume-up')) {
+                        soundBtn.removeClass('fa-volume-up');
+                        soundBtn.addClass('fa-volume-mute');
+                        this.stopMusic();
+                }
+                else {
+                        soundBtn.removeClass('fa-volume-mute');
+                        soundBtn.addClass('fa-volume-up');
+                        this.startMusic();
+                }
 
 
         }
@@ -66,7 +66,7 @@ class ScoreController {
                 this.threeStar = 'Not a bad attempt'
                 this.fourStar = 'Well done, thats a great effort'
                 this.fiveStar = 'Excellent the knights of the realm will be thrilled with you!'
-                
+
                 this.numberOfCards = cardsArray.length;
 
                 this.scoreTitle = $('#scoreTitle');
@@ -116,66 +116,66 @@ class ScoreController {
                 $('#star4').addClass('star-gold');
                 $('#star5').addClass('star-gold');
         }
-        
-        scoreCalculator = function(timeRemaining,totalTime,turns) {
-                this.score = this.timeCalculator(timeRemaining,totalTime) + this.turnsCalculator(turns);
-                
-                if(this.score >= 90) {
+
+        scoreCalculator = function(timeRemaining, totalTime, turns) {
+                this.score = this.timeCalculator(timeRemaining, totalTime) + this.turnsCalculator(turns);
+
+                if (this.score >= 90) {
                         this.fiveStarMessage();
                 }
-                else if(this.score >= 70) {
+                else if (this.score >= 70) {
                         this.fourStarMessage();
                 }
-                else if(this.score >= 50) {
+                else if (this.score >= 50) {
                         this.threeStarMessage();
                 }
-                 else if(this.score >= 30) {
+                else if (this.score >= 30) {
                         this.twoStarMessage();
                 }
-                 else if(this.score >= 20) {
+                else if (this.score >= 20) {
                         this.oneStarMessage();
                 }
         }
-        
-        timeCalculator = function(timeRemaining,totalTime) {
-                this.percentages = totalTime/5;
-                this.oneStarTime = this.percentages*0.5;
-                this.twoStarTime = this.percentages*1.5;
-                this.threeStarTime = this.percentages*2.5;
-                this.fourStarTime = this.percentages*3.5;
-                this.fiveStarTime = this.percentages*4.5;
-                
+
+        timeCalculator = function(timeRemaining, totalTime) {
+                this.percentages = totalTime / 5;
+                this.oneStarTime = this.percentages * 0.5;
+                this.twoStarTime = this.percentages * 1.5;
+                this.threeStarTime = this.percentages * 2.5;
+                this.fourStarTime = this.percentages * 3.5;
+                this.fiveStarTime = this.percentages * 4.5;
+
                 //Calculate a score based on the amount of time remaining
-                
-                if(timeRemaining >= this.fiveStarTime) {
+
+                if (timeRemaining >= this.fiveStarTime) {
                         return 50;
                 }
-                else if(timeRemaining < this.fiveStarTime && timeRemaining >= this.fourStarTime){
+                else if (timeRemaining < this.fiveStarTime && timeRemaining >= this.fourStarTime) {
                         return 40;
                 }
-                else if(timeRemaining < this.fourStarTime && timeRemaining >= this.threeStarTime){
+                else if (timeRemaining < this.fourStarTime && timeRemaining >= this.threeStarTime) {
                         return 30;
                 }
-                 else if(timeRemaining < this.threeStarTime && timeRemaining >= this.twoStarTime){
+                else if (timeRemaining < this.threeStarTime && timeRemaining >= this.twoStarTime) {
                         return 20;
                 }
-                  else if(timeRemaining < this.twoStarTime){
+                else if (timeRemaining < this.twoStarTime) {
                         return 10;
                 }
-                
-                
-                
-                
+
+
+
+
         }
-        
+
         turnsCalculator = function(turns) {
-                this.oneStarTurns = this.numberOfCards*3;
-                this.twoStarTurns = this.numberOfCards*2.5;
-                this.threeStarTurns = this.numberOfCards*2.1;
-                this.fourStarTurns = this.numberOfCards*1.8;
-                this.fiveStarTurns = this.numberOfCards*1.5;
-                
-                 if(turns <= this.fiveStarTurns) {
+                this.oneStarTurns = this.numberOfCards * 3;
+                this.twoStarTurns = this.numberOfCards * 2.5;
+                this.threeStarTurns = this.numberOfCards * 2.1;
+                this.fourStarTurns = this.numberOfCards * 1.8;
+                this.fiveStarTurns = this.numberOfCards * 1.5;
+
+                if (turns <= this.fiveStarTurns) {
                         return 50;
                 }
                 else if (turns > this.fiveStarTurns && turns <= this.fourStarTurns) {
@@ -188,19 +188,19 @@ class ScoreController {
                         return 20;
                 }
                 else if (turns > this.oneStarTurns) {
-                         return 10;
+                        return 10;
                 }
         }
-        
-        matchDisplay = function(matches){
+
+        matchDisplay = function(matches) {
                 let matchesEl = $('#matches');
                 let amountEl = $('amount');
-                
+
                 matchesEl.html(matches);
                 amountEl.html(this.numberOfCards);
-                
+
         }
-        
+
 }
 
 class CardMatch {
@@ -258,25 +258,25 @@ class CardMatch {
 
                 }, 500)
         }
-        
-        resetGame = function(){
+
+        resetGame = function() {
                 this.score.matchDisplay(0);
-                
+                clearInterval(this.countDown);
         }
 
         startGame = function() {
-   
+
                 this.resetGame()
                 this.cardToBeChecked = null;
                 this.totalClicks = 0;
                 this.timeRemaining = this.totalTime;
                 this.matchedCards = [];
                 this.numMatches = 0
-                
+
                 this.busy = true;
-                
+
                 this.setName();
-                
+
 
                 setTimeout(() => {
                         /*audio;
@@ -286,7 +286,6 @@ class CardMatch {
                         countdown = countdownFunc;*/
 
                         this.audioController.startMusic();
-                        this.audioController.muteMusic();
                         this.shuffleCards(this.cardArray);
                         this.busy = false;
                         this.countDown = this.startCountdown();
@@ -317,13 +316,21 @@ class CardMatch {
                 clearInterval(this.countDown);
                 this.audioController.fail();
                 this.score.fail();
+                $('#scoreModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                })
                 $('#scoreModal').modal('show')
         }
 
         victory = function() {
                 clearInterval(this.countDown);
                 this.audioController.success();
-                this.score.scoreCalculator(this.timeRemaining,this.totalTime,this.totalClicks);
+                this.score.scoreCalculator(this.timeRemaining, this.totalTime, this.totalClicks);
+                $('#scoreModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                })
                 $('#scoreModal').modal('show')
 
         }
@@ -387,15 +394,13 @@ class CardMatch {
 
 
         cardMatched = function(card1, card2) {
-                
-                this.busy= true;
+
+                this.busy = true;
                 this.audioController.match();
                 setTimeout(() => {
-                        
-                        
                         this.busy = false;
-                }, 1000)
-                
+                }, 1500)
+
                 this.matchedCards.push(card1[0]);
                 this.matchedCards.push(card2[0]);
                 this.numMatches++;
@@ -427,25 +432,41 @@ class CardMatch {
 
 
 $(document).ready(function() {
+        $('#startModal').modal({
+                backdrop: 'static',
+                keyboard: false
+        })
         $("#startModal").modal('show');
-
+        // if statement for differernt modes
         let cards = $('.card');
         let game = new CardMatch(100, cards);
         let start = $('#start-btn');
         let playAgain = $('#play-again');
+        let sidePlayAgain = $('#side-playAgain');
         let mute = $('#sound');
+        let rules = $('rules');
 
 
+
+        rules.on('click', function() {
+                $("#rulesModal").modal('show');
+
+        });
 
         start.on('click', function() {
                 game.startGame();
         });
-        
-         mute.on('click', function() {
+
+        mute.on('click', function() {
                 game.audioController.muteMusic();
         });
 
         playAgain.on('click', function() {
+                game.startGame();
+
+        });
+
+        sidePlayAgain.on('click', function() {
                 game.startGame();
 
         });

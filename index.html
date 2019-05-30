@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-4 icon-container">
                             <div class="background-icon">
-                                <i class="fas fa-redo-alt icon"></i>
+                                <i id="side-playAgain"class="fas fa-redo-alt icon"></i>
                             </div>
                         </div>
                     </div>
@@ -212,7 +212,7 @@
                 </div>
                 <div class="modal-footer modal-border-color">
                     <button type="button" class="btn btn-primary btn-drkred" data-dismiss="modal" id="start-btn">Start</button>
-                    <button type="button" class="btn btn-primary btn-drkred">Rules</button>
+                    <button type="button" id="rules" class="btn btn-primary btn-drkred">Rules</button>
                 </div>
             </div>
         </div>
@@ -223,11 +223,11 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content text-center modal-color">
                 <div class="modal-header modal-border-color">
-                    <h2 class="modal-title" id="scoreTitle">Congratulations</h5>
+                    <h2 class="modal-title" id="scoreTitle">Congratulations</h2>
                     <span aria-hidden="true">&times;</span>
                 </div>
                 <div class="modal-body ">
-                        <h4>You scored:</h3>
+                        <h4>You scored:</h4>
                         <div class="score">
                             <span id="star1" class="star star-greyed"><i class="fas fa-star"></i></span>
                             <span id="star2" class="star star-greyed"><i class="fas fa-star"></i></span>
@@ -240,6 +240,25 @@
                 </div>
                 <div class="modal-footer modal-border-color">
                     <button id="play-again" type="button" class="btn btn-primary btn-drkred" data-dismiss="modal">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <!--- Rules Screen Modal-->
+    <div class="modal fade" id="rulesModal" tabindex="-1" role="dialog" aria-labelledby="rulesModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center modal-color">
+                
+                <div class="modal-body">
+                        <h2>The Rules:</h2>
+                        <p> The aim of the game is too match all of the cards within the given amount of time. </br> 
+                        Try to complete the game as quickly as possible to get a higher score.</p>
+                        
+                        
+                </div>
+                <div class="modal-footer modal-border-color">
+                    <button type="button"  class="btn btn-secondary btn-drkred" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
