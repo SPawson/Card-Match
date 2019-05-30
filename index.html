@@ -197,22 +197,22 @@
     <!--- Start Screen Modal-->
     <div class="modal fade" id="startModal" tabindex="-1" role="dialog" aria-labelledby="startModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="startModalCenterTitle">Welcome To Westeros</h5>
+            <div class="modal-content text-center modal-color">
+                <div class="modal-header modal-border-color ">
+                    <h2 class="modal-title text-center" id="startModalCenterTitle">Welcome To Westeros</h5>
                     <span aria-hidden="true">&times;</span>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <h3>What is your name traveller?</h3>
+                        <h4>What is your name traveller?</h3>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="name" placeholder="Name" aria-label="Name input" required>
+                            <input type="text" class="form-control modal-txtbox" id="name" placeholder="Name" aria-label="Name input" required>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="start-btn">Start</button>
-                    <button type="button" class="btn btn-primary">Rules</button>
+                <div class="modal-footer modal-border-color">
+                    <button type="button" class="btn btn-primary btn-drkred" data-dismiss="modal" id="start-btn">Start</button>
+                    <button type="button" class="btn btn-primary btn-drkred">Rules</button>
                 </div>
             </div>
         </div>
@@ -221,13 +221,13 @@
     <!--- Score Screen Modal-->
     <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="scoreModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="scoreTitle">Congratulations</h5>
+            <div class="modal-content text-center modal-color">
+                <div class="modal-header modal-border-color">
+                    <h2 class="modal-title" id="scoreTitle">Congratulations</h5>
                     <span aria-hidden="true">&times;</span>
                 </div>
-                <div class="modal-body">
-                        <h3>You scored:</h3>
+                <div class="modal-body ">
+                        <h4>You scored:</h3>
                         <div class="score">
                             <span id="star1" class="star star-greyed"><i class="fas fa-star"></i></span>
                             <span id="star2" class="star star-greyed"><i class="fas fa-star"></i></span>
@@ -238,8 +238,8 @@
                         <p id="endGameMessage"></p>
                         
                 </div>
-                <div class="modal-footer">
-                    <button id="play-again" type="button" class="btn btn-primary" data-dismiss="modal">Play Again</button>
+                <div class="modal-footer modal-border-color">
+                    <button id="play-again" type="button" class="btn btn-primary btn-drkred" data-dismiss="modal">Play Again</button>
                 </div>
             </div>
         </div>
