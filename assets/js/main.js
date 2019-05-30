@@ -390,6 +390,8 @@ class CardMatch {
                         this.busy = false;
 
                 }, 1000)
+                
+                console.log('hello');
         }
 
 
