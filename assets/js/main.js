@@ -39,21 +39,17 @@ class AudioController {
 
         muteMusic = function() {
                 let soundBtn = $('#sound');
-                let stop = this.stopMusic()
-                let start = this.startMusic()
-
-                soundBtn.on('click', () => {
+               
                         if (soundBtn.hasClass('fa-volume-up')) {
                                 soundBtn.removeClass('fa-volume-up');
                                 soundBtn.addClass('fa-volume-mute');
-                                this.stopMusic()
+                                this.stopMusic();
                         }
                         else {
                                 soundBtn.removeClass('fa-volume-mute');
                                 soundBtn.addClass('fa-volume-up');
-                                this.startMusic()
+                                this.startMusic();
                         }
-                });
 
 
         }
@@ -262,24 +258,25 @@ class CardMatch {
 
                 }, 500)
         }
+        
+        resetGame = function(){
+                this.score.matchDisplay(0);
+                
+        }
 
         startGame = function() {
-                /*let audioBgMusic = this.audioController.startMusic();
-                let shuffle = this.shuffleCards(this.cardArray);
-                let timeRemaining = this.timeRemaining;
-                let busy = this.busy;
-                let countdown = this.countdown;
-                let countdownFunc = this.startCountdown();
-                */
-
+   
+                this.resetGame()
                 this.cardToBeChecked = null;
                 this.totalClicks = 0;
                 this.timeRemaining = this.totalTime;
                 this.matchedCards = [];
-                this.busy = true;
-                this.audioController.muteMusic();
-                this.setName();
                 this.numMatches = 0
+                
+                this.busy = true;
+                
+                this.setName();
+                
 
                 setTimeout(() => {
                         /*audio;
@@ -289,6 +286,7 @@ class CardMatch {
                         countdown = countdownFunc;*/
 
                         this.audioController.startMusic();
+                        this.audioController.muteMusic();
                         this.shuffleCards(this.cardArray);
                         this.busy = false;
                         this.countDown = this.startCountdown();
@@ -325,7 +323,7 @@ class CardMatch {
         victory = function() {
                 clearInterval(this.countDown);
                 this.audioController.success();
-                this.score.scoreCalculator(this.timeRemaining,this.totalTime,this.cardArray,);
+                this.score.scoreCalculator(this.timeRemaining,this.totalTime,this.totalClicks);
                 $('#scoreModal').modal('show')
 
         }
@@ -393,16 +391,15 @@ class CardMatch {
                 this.busy= true;
                 this.audioController.match();
                 setTimeout(() => {
-                       this.busy = false;
-
-                }, 500)
+                        
+                        
+                        this.busy = false;
+                }, 1000)
                 
                 this.matchedCards.push(card1[0]);
                 this.matchedCards.push(card2[0]);
                 this.numMatches++;
                 this.score.matchDisplay(this.numMatches);
-
-                console.log(this.cardMatched);
 
                 if (this.matchedCards.length === this.cardArray.length) {
                         this.victory();
@@ -434,13 +431,18 @@ $(document).ready(function() {
 
         let cards = $('.card');
         let game = new CardMatch(100, cards);
-        let start = $('#start-btn')
-        let playAgain = $('#play-again')
+        let start = $('#start-btn');
+        let playAgain = $('#play-again');
+        let mute = $('#sound');
 
 
 
         start.on('click', function() {
                 game.startGame();
+        });
+        
+         mute.on('click', function() {
+                game.audioController.muteMusic();
         });
 
         playAgain.on('click', function() {
