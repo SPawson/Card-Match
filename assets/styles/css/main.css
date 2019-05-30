@@ -182,8 +182,29 @@ h1,h2,h3,h4,h5,h6 {
     margin: 0px 5px;;
 }
 
+/********************
+    Modal Common Styles
+*********************/
+
+.modal-color{
+    background-color: #949393;
+}
+.modal-border-color{
+    border-color: black;
+}
+
+.modal-txtbox{
+    background-color: #d4d4d4;
+}
+
+.btn-drkred{
+    background-color: #7b4e4e;
+    border-color: #7b4e4e;
+}
+
 @font-face {
     font-family: 'game-of-thrones';
     src: url('../../fonts/game-of-thrones.ttf') format('tff');
 
 }
+
