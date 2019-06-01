@@ -203,6 +203,48 @@ class ScoreController {
 
 }
 
+class ModeSelection {
+        constructor(){
+                this.modeSelected;
+                this.easyBtn = $('#easy-mode');
+                this.mediumBtn = $('#medium-mode');
+                this.hardBtn = $('#hard-mode');
+        }
+        //applies the active class depending upon the button selected
+        btnSelection = function(){
+                this.easyBtn.on('click', () => {
+                        this.easyBtn.addClass('btn-active');
+                        this.mediumBtn.removeClass('btn-active');
+                        this.hardBtn.removeClass('btn-active');
+                })
+                
+                this.mediumBtn.on('click', () => {
+                        this.mediumBtn.addClass('btn-active');
+                        this.easyBtn.removeClass('btn-active');
+                        this.hardBtn.removeClass('btn-active');
+                })
+                
+                this.hardBtn.on('click', () => {
+                        this.hardBtn.addClass('btn-active');
+                        this.mediumBtn.removeClass('btn-active');
+                        this.easyBtn.removeClass('btn-active');
+                })
+        }
+        //determines which mode is selected by the user
+        modeSelected = function(){
+                if(this.easyBtn.hasClass('btn-active')) {
+                        this.modeSelected = 1;
+                }
+                else if(this.mediumBtn.hasClass('btn-active')) {
+                        this.modeSelected = 2;
+                }
+                else if(this.hardBtn.hasClass('btn-active')) {
+                        this.modeSelected = 3;
+                }
+                
+        }
+}
+
 class CardMatch {
         constructor(totalTime, cards) {
                 this.cardArray = cards;
@@ -265,7 +307,8 @@ class CardMatch {
         }
 
         startGame = function() {
-
+                //call mode selection here
+                
                 this.resetGame()
                 this.cardToBeChecked = null;
                 this.totalClicks = 0;
@@ -441,6 +484,7 @@ $(document).ready(function() {
         $("#startModal").modal('show');
         // if statement for differernt modes
         let cards = $('.card');
+        let mode = new ModeSelection
         let game = new CardMatch(100, cards);
         let start = $('#start-btn');
         let playAgain = $('#play-again');
@@ -449,7 +493,8 @@ $(document).ready(function() {
         let rules = $('rules');
 
 
-
+        mode.btnSelection();
+        
         rules.on('click', function() {
                 $("#rulesModal").modal('show');
 

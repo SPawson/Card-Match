@@ -207,6 +207,57 @@ h1,h2,h3,h4,h5,h6 {
     border-color: #734848;
 }
 
+/********************
+    Start Modal
+*********************/
+
+.mode-select{
+    margin: 30px auto;
+}
+
+.mode-header{
+    margin-bottom: 10px;
+}
+
+.btn-mode{
+    font-size: 16px;
+    color: #2d1c1c;
+    font-weight: bold;
+    background-color: white;
+    height: 70px;
+    width: 90px;
+}
+
+#easy-mode:focus,
+#medium-mode:focus, #hard-mode:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-easy{
+    background-color: #c1e082;
+}
+.btn-easy:hover{
+    background-color: #c1e084;
+}
+
+.btn-med{
+    background-color: #e2bb74;
+}
+.btn-med:hover{
+    background-color: #e2bb76;
+}
+
+.btn-hard{
+    background-color: #cc5c5c;
+}
+.btn-hard:hover{
+    background-color: #cc5c5f;
+}
+
+.btn-active{
+   border:2px solid #ffffaa;
+}
 
 @font-face {
     font-family: 'game-of-thrones';
