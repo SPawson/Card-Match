@@ -194,10 +194,10 @@ class ScoreController {
 
         matchDisplay = function(matches) {
                 let matchesEl = $('#matches');
-                let amountEl = $('amount');
+                let amountEl = $('#amount');
 
                 matchesEl.html(matches);
-                amountEl.html(this.numberOfCards);
+                amountEl.html(this.numberOfCards/2);
 
         }
 
@@ -287,11 +287,6 @@ class CardMatch {
 
         configureTimeOut = function(audio, shuffle, timeR, busy, countdown, countdownFunc) {
                 setTimeout(() => {
-                        /*audio;
-                        shuffle;
-                        timeR = countdown;
-                        busy = false;
-                        countdown = countdownFunc;*/
 
                         this.audioController.startMusic();
                         this.shuffleCards(this.cardArray);
@@ -322,11 +317,6 @@ class CardMatch {
 
 
                 setTimeout(() => {
-                        /*audio;
-                        shuffle;
-                        timeR = countdown;
-                        busy = false;
-                        countdown = countdownFunc;*/
 
                         this.audioController.startMusic();
                         this.shuffleCards(this.cardArray);
@@ -459,8 +449,6 @@ class CardMatch {
 
         getCardType = function(card) {
                 let cardType = card.getElementsByClassName('card-value')[0].src;
-                //$(card).add('.card-value').attr('src');
-                console.log(cardType)
                 return cardType;
         }
 
@@ -491,7 +479,7 @@ $(document).ready(function() {
         let gameTime;
         let cards = $('.card');
         let mode = new ModeSelection;
-        let game = new CardMatch(60, cards);
+        let game = new CardMatch(100, cards);
         let start = $('#start-btn');
         let playAgain = $('#play-again');
         let sidePlayAgain = $('#side-playAgain');
@@ -503,7 +491,7 @@ $(document).ready(function() {
 
         easyBtn.on('click', () => {
                 mode.easyMode();
-                gameTime = 20
+                gameTime = 30
                 game.totalTime = gameTime;
                 cards = $('.card-easy');
                 game.cardArray = cards
@@ -511,7 +499,7 @@ $(document).ready(function() {
 
         mediumBtn.on('click', () => {
                 mode.medMode();
-                gameTime = 40
+                gameTime = 60
                 game.totalTime = gameTime;
                 cards = $.merge($('.card-easy'),$('.card-med'));
                 game.cardArray = cards
@@ -519,7 +507,7 @@ $(document).ready(function() {
 
         hardBtn.on('click', () => {
                 mode.hardMode();
-                gameTime = 60
+                gameTime = 100
                 game.totalTime = gameTime;
                 cards = $('.card');
                 game.cardArray = cards
@@ -537,15 +525,25 @@ $(document).ready(function() {
         //initialises card game
         start.on('click', function() {
                 
+               if($('#name').val() === '' || $('#name').val() === undefined){
+                        alert('Please enter your name');
+                        
+                }
+                else{
+                $('#startModal').modal('hide');
                 game.startGame();
+                }
         });
-
+        //mutes music
         mute.on('click', function() {
                 game.audioController.muteMusic();
         });
-
+        //Allows game to be re
         playAgain.on('click', function() {
-                game.startGame();
+                
+                $("#startModal").modal('show');
+                
+               // game.startGame();
 
         });
 

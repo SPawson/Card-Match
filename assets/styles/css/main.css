@@ -73,14 +73,14 @@ h1,h2,h3,h4,h5,h6 {
 .card-container {
     display: grid;
     grid-template-columns: repeat(4, auto);
-    grid-gap: 25px;
+    grid-gap: 30px;
     justify-content: center;
     margin-bottom: 45px
 }
 
 .card {
-    height: 203px;
-    width: 145px;
+    height: 120px;
+    width: 80px;
     background-color: transparent;
     position: relative;
     transform-style: preserve-3d;
@@ -130,6 +130,11 @@ h1,h2,h3,h4,h5,h6 {
 
 }
 
+.card-front img,.card-back img {
+    height:100%;
+    width: 100%;
+}
+
 /********************
     Score-Container
 *********************/
@@ -140,14 +145,15 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .player-info-container {
-    margin: 15px auto;
-    background-color: #e0c975;
-    border: 1px solid #e0c975;
-    border-radius: 5px;
+    
 }
 
 .player-stats {
     margin-bottom: 15px;
+    background-color: #e0c975;
+    border: 1px solid #e0c975;
+    margin: 15px auto;
+    border-radius: 5px;
 }
 
 .divider {
@@ -266,4 +272,16 @@ h1,h2,h3,h4,h5,h6 {
     src: url('../../fonts/game-of-thrones.ttf') format('tff');
 
 }
+
+/********************
+    Media Queries
+*********************/
+
+@media(min-width: 768px) {
+    .card {
+    height: 160px;
+    width: 120px;
+    }
+}
+
 

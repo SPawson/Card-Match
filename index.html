@@ -30,7 +30,7 @@
 
         <div class="row content-row">
             <!---- Score Container-->
-            <div class="col-md-3 score-container">
+            <div class="col-xl-3 col-md-12 score-container">
                 <div class="container-fluid">
                     <div class="player-info-container">
                         <div class="row text-center player-stats">
@@ -46,17 +46,13 @@
                                     <span class="star"><i class="fas fa-star"></i></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row text-center card-stats">
-                            <div class="col-12 matches">
+                            <div class="col-12 text-center card-stats">
+                            <div class=" matches">
                                 <h4>Matches</h4>
-                                <p ><span id="matches">0</span>/<span class="amount">6</span></p>
+                                <p ><span id="matches">0</span>/<span id="amount">6</span></p>
                             </div>
-                            <!--<div class="col-6 remaining">
-                                <h4>Remaining</h4>
-                                <p id="remaining">6/6</p>
-                            </div>-->
                         </div>
+                        
                     </div>
                     <div class="row icons-container">
                         <div class="col-4 icon-container">
@@ -77,11 +73,12 @@
                     </div>
                 </div>
             </div>
+        </div>
             <!---- Game Container-->
-            <div class="col-md-9 game-container container-fluid">
+            <div class="col-xl-9 col-lg-12 game-container container-fluid">
                 <div class="row game-info-container text-center">
                     <div class="time-container col-md-6">
-                        <h3>Time: <span id="time-remaining">60</span></h3>
+                        <h3>Time: <span id="time-remaining">100</span></h3>
                     </div>
                     <div class="turns-container col-md-6">
                         <h3>Turns: <span id="turns-count">0</span></h3>
@@ -93,7 +90,7 @@
                     <div class="col-12 card-container">
                         <div class="card card-easy">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/danny-large.png" alt="front of card"></img>
@@ -101,7 +98,7 @@
                         </div>
                         <div class="card card-easy">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/danny-large.png" alt="front of card"></img>
@@ -109,7 +106,7 @@
                         </div>
                         <div class="card card-easy">
                             <div class="card-back card-face">
-                                <img  src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img  src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/arya-large.png" alt="front of card"></img>
@@ -117,31 +114,39 @@
                         </div>
                         <div class="card card-easy">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/arya-large.png" alt="front of card"></img>
                             </div>
                         </div>
-                        <div class="card card-med">
+                        <div class="card card-easy">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/jon-large.png" alt="front of card"></img>
                             </div>
                         </div>
-                        <div class="card card-med">
+                        <div class="card card-easy">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/jon-large.png" alt="front of card"></img>
                             </div>
                         </div>
-                        <div class="card card-med">
+                        <div class="card card-easy">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face">
+                                <img class="card-value" src="assets/images/card-front/large/mel-large.png" alt="front of card"></img>
+                            </div>
+                        </div>
+                        <div class="card card-easy">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/mel-large.png" alt="front of card"></img>
@@ -149,44 +154,69 @@
                         </div>
                         <div class="card card-med">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
-                            </div>
-                            <div class="card-front card-face">
-                                <img class="card-value" src="assets/images/card-front/large/mel-large.png" alt="front of card"></img>
-                            </div>
-                        </div>
-                        <div class="card card-hard">
-                            <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/tyrion-large.png" alt="front of card"></img>
                             </div>
                         </div>
-                        <div class="card card-hard">
+                        <div class="card card-med">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/tyrion-large.png" alt="front of card"></img>
                             </div>
                         </div>
-                        <div class="card card-hard">
+                        <div class="card card-med">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/white-large.png" alt="front of card"></img>
                             </div>
                         </div>
-                        <div class="card card-hard">
+                        <div class="card card-med">
                             <div class="card-back card-face">
-                                <img src="assets/images/card-back/card-back-w145-h203.png" alt="back of card"></img>
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
                             </div>
                             <div class="card-front card-face">
                                 <img class="card-value" src="assets/images/card-front/large/white-large.png" alt="front of card"></img>
                             </div>
                         </div>
+                         <div class="card card-hard">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face">
+                                <img class="card-value" src="assets/images/card-front/large/bran-large.png" alt="front of card"></img>
+                            </div>
+                        </div>
+                        <div class="card card-hard">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face">
+                                <img class="card-value" src="assets/images/card-front/large/bran-large.png" alt="front of card"></img>
+                            </div>
+                        </div>
+                        <div class="card card-hard">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face">
+                                <img class="card-value" src="assets/images/card-front/large/jamie-large.png" alt="front of card"></img>
+                            </div>
+                        </div>
+                        <div class="card card-hard">
+                            <div class="card-back card-face">
+                                <img src="assets/images/card-back/card-back-large.png" alt="back of card"></img>
+                            </div>
+                            <div class="card-front card-face">
+                                <img class="card-value" src="assets/images/card-front/large/jamie-large.png" alt="front of card"></img>
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -227,7 +257,7 @@
                     </div>
                 </div>
                 <div class="modal-footer modal-border-color">
-                    <button type="button" class="btn btn-primary btn-drkred" data-dismiss="modal" id="start-btn">Start</button>
+                    <button type="button" class="btn btn-primary btn-drkred" id="start-btn">Start</button>
                     <button type="button" id="rules" class="btn btn-primary btn-drkred">Rules</button>
                 </div>
             </div>
