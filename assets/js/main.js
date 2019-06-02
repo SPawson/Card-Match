@@ -204,46 +204,46 @@ class ScoreController {
 }
 
 class ModeSelection {
-        constructor(){
-                this.modeSelected;
+        constructor() {
                 this.easyBtn = $('#easy-mode');
                 this.mediumBtn = $('#medium-mode');
                 this.hardBtn = $('#hard-mode');
         }
         //applies the active class depending upon the button selected
-        btnSelection = function(){
+        easyMode = function() {
                 this.easyBtn.on('click', () => {
                         this.easyBtn.addClass('btn-active');
                         this.mediumBtn.removeClass('btn-active');
                         this.hardBtn.removeClass('btn-active');
+                        
+                        $('.card-med').addClass('remove');
+                        $('.card-hard').addClass('remove');
                 })
-                
+        }
+
+        medMode = function() {
                 this.mediumBtn.on('click', () => {
                         this.mediumBtn.addClass('btn-active');
                         this.easyBtn.removeClass('btn-active');
                         this.hardBtn.removeClass('btn-active');
+                        
+                        $('.card-med').removeClass('remove');
+                        $('.card-hard').addClass('remove');
                 })
-                
+        }
+        hardMode = function() {
                 this.hardBtn.on('click', () => {
                         this.hardBtn.addClass('btn-active');
                         this.mediumBtn.removeClass('btn-active');
                         this.easyBtn.removeClass('btn-active');
+                        
+                        $('.card-hard').removeClass('remove');
                 })
         }
-        //determines which mode is selected by the user
-        modeSelected = function(){
-                if(this.easyBtn.hasClass('btn-active')) {
-                        this.modeSelected = 1;
-                }
-                else if(this.mediumBtn.hasClass('btn-active')) {
-                        this.modeSelected = 2;
-                }
-                else if(this.hardBtn.hasClass('btn-active')) {
-                        this.modeSelected = 3;
-                }
-                
-        }
+
 }
+
+
 
 class CardMatch {
         constructor(totalTime, cards) {
@@ -308,7 +308,7 @@ class CardMatch {
 
         startGame = function() {
                 //call mode selection here
-                
+
                 this.resetGame()
                 this.cardToBeChecked = null;
                 this.totalClicks = 0;
@@ -433,7 +433,7 @@ class CardMatch {
                         this.busy = false;
 
                 }, 1000)
-                
+
                 console.log('hello');
         }
 
@@ -483,24 +483,60 @@ $(document).ready(function() {
         })
         $("#startModal").modal('show');
         // if statement for differernt modes
+
+        let easyBtn = $('#easy-mode');
+        let mediumBtn = $('#medium-mode');
+        let hardBtn = $('#hard-mode');
+        let cardArray;
+        let gameTime;
         let cards = $('.card');
-        let mode = new ModeSelection
-        let game = new CardMatch(100, cards);
+        let mode = new ModeSelection;
+        let game = new CardMatch(60, cards);
         let start = $('#start-btn');
         let playAgain = $('#play-again');
         let sidePlayAgain = $('#side-playAgain');
         let mute = $('#sound');
         let rules = $('rules');
-
-
-        mode.btnSelection();
         
+        console.log(cards);
+        
+
+        easyBtn.on('click', () => {
+                mode.easyMode();
+                gameTime = 20
+                game.totalTime = gameTime;
+                cards = $('.card-easy');
+                game.cardArray = cards
+        })
+
+        mediumBtn.on('click', () => {
+                mode.medMode();
+                gameTime = 40
+                game.totalTime = gameTime;
+                cards = $.merge($('.card-easy'),$('.card-med'));
+                game.cardArray = cards
+        })
+
+        hardBtn.on('click', () => {
+                mode.hardMode();
+                gameTime = 60
+                game.totalTime = gameTime;
+                cards = $('.card');
+                game.cardArray = cards
+        })
+
+
+        //sets difficulty based on btn pressed
+
+        //opens rules section
         rules.on('click', function() {
                 $("#rulesModal").modal('show');
 
         });
 
+        //initialises card game
         start.on('click', function() {
+                
                 game.startGame();
         });
 
