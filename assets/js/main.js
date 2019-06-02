@@ -194,14 +194,56 @@ class ScoreController {
 
         matchDisplay = function(matches) {
                 let matchesEl = $('#matches');
-                let amountEl = $('amount');
+                let amountEl = $('#amount');
 
                 matchesEl.html(matches);
-                amountEl.html(this.numberOfCards);
+                amountEl.html(this.numberOfCards/2);
 
         }
 
 }
+
+class ModeSelection {
+        constructor() {
+                this.easyBtn = $('#easy-mode');
+                this.mediumBtn = $('#medium-mode');
+                this.hardBtn = $('#hard-mode');
+        }
+        //applies the active class depending upon the button selected
+        easyMode = function() {
+                this.easyBtn.on('click', () => {
+                        this.easyBtn.addClass('btn-active');
+                        this.mediumBtn.removeClass('btn-active');
+                        this.hardBtn.removeClass('btn-active');
+                        
+                        $('.card-med').addClass('remove');
+                        $('.card-hard').addClass('remove');
+                })
+        }
+
+        medMode = function() {
+                this.mediumBtn.on('click', () => {
+                        this.mediumBtn.addClass('btn-active');
+                        this.easyBtn.removeClass('btn-active');
+                        this.hardBtn.removeClass('btn-active');
+                        
+                        $('.card-med').removeClass('remove');
+                        $('.card-hard').addClass('remove');
+                })
+        }
+        hardMode = function() {
+                this.hardBtn.on('click', () => {
+                        this.hardBtn.addClass('btn-active');
+                        this.mediumBtn.removeClass('btn-active');
+                        this.easyBtn.removeClass('btn-active');
+                        
+                        $('.card-hard').removeClass('remove');
+                })
+        }
+
+}
+
+
 
 class CardMatch {
         constructor(totalTime, cards) {
@@ -245,11 +287,6 @@ class CardMatch {
 
         configureTimeOut = function(audio, shuffle, timeR, busy, countdown, countdownFunc) {
                 setTimeout(() => {
-                        /*audio;
-                        shuffle;
-                        timeR = countdown;
-                        busy = false;
-                        countdown = countdownFunc;*/
 
                         this.audioController.startMusic();
                         this.shuffleCards(this.cardArray);
@@ -265,6 +302,7 @@ class CardMatch {
         }
 
         startGame = function() {
+                //call mode selection here
 
                 this.resetGame()
                 this.cardToBeChecked = null;
@@ -279,11 +317,6 @@ class CardMatch {
 
 
                 setTimeout(() => {
-                        /*audio;
-                        shuffle;
-                        timeR = countdown;
-                        busy = false;
-                        countdown = countdownFunc;*/
 
                         this.audioController.startMusic();
                         this.shuffleCards(this.cardArray);
@@ -390,7 +423,7 @@ class CardMatch {
                         this.busy = false;
 
                 }, 1000)
-                
+
                 console.log('hello');
         }
 
@@ -416,8 +449,6 @@ class CardMatch {
 
         getCardType = function(card) {
                 let cardType = card.getElementsByClassName('card-value')[0].src;
-                //$(card).add('.card-value').attr('src');
-                console.log(cardType)
                 return cardType;
         }
 
@@ -440,31 +471,79 @@ $(document).ready(function() {
         })
         $("#startModal").modal('show');
         // if statement for differernt modes
+
+        let easyBtn = $('#easy-mode');
+        let mediumBtn = $('#medium-mode');
+        let hardBtn = $('#hard-mode');
+        let cardArray;
+        let gameTime;
         let cards = $('.card');
+        let mode = new ModeSelection;
         let game = new CardMatch(100, cards);
         let start = $('#start-btn');
         let playAgain = $('#play-again');
         let sidePlayAgain = $('#side-playAgain');
         let mute = $('#sound');
         let rules = $('rules');
+        
+        console.log(cards);
+        
+
+        easyBtn.on('click', () => {
+                mode.easyMode();
+                gameTime = 30
+                game.totalTime = gameTime;
+                cards = $('.card-easy');
+                game.cardArray = cards
+        })
+
+        mediumBtn.on('click', () => {
+                mode.medMode();
+                gameTime = 60
+                game.totalTime = gameTime;
+                cards = $.merge($('.card-easy'),$('.card-med'));
+                game.cardArray = cards
+        })
+
+        hardBtn.on('click', () => {
+                mode.hardMode();
+                gameTime = 100
+                game.totalTime = gameTime;
+                cards = $('.card');
+                game.cardArray = cards
+        })
 
 
+        //sets difficulty based on btn pressed
 
+        //opens rules section
         rules.on('click', function() {
                 $("#rulesModal").modal('show');
 
         });
 
+        //initialises card game
         start.on('click', function() {
+                
+               if($('#name').val() === '' || $('#name').val() === undefined){
+                        alert('Please enter your name');
+                        
+                }
+                else{
+                $('#startModal').modal('hide');
                 game.startGame();
+                }
         });
-
+        //mutes music
         mute.on('click', function() {
                 game.audioController.muteMusic();
         });
-
+        //Allows game to be re
         playAgain.on('click', function() {
-                game.startGame();
+                
+                $("#startModal").modal('show');
+                
+               // game.startGame();
 
         });
 
