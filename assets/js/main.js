@@ -4,53 +4,63 @@ class AudioController {
                 this.flipSound = new Audio('assets/audio/game-sounds/flip.wav');
                 this.matchSound = new Audio('assets/audio/game-sounds/match.mp3');
                 this.succesSound = new Audio('assets/audio/game-sounds/success.mp3');
-                this.failSound = new Audio('assets/audio/game-sounds/fail.mp3')
+                this.failSound = new Audio('assets/audio/game-sounds/fail.mp3');
 
                 this.backgroundMusic.volume = 0.1;
                 this.backgroundMusic.loop = true;
+
+                this.soundBtn = $('#sound');
         }
 
-        startMusic = function() {
-                this.backgroundMusic.play();
+        startMusic() {
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.backgroundMusic.play();
+                }
         }
 
-        stopMusic = function() {
+        stopMusic() {
                 this.backgroundMusic.pause();
                 this.backgroundMusic.currentTime = 0;
         }
 
-        flip = function() {
-                this.flipSound.play();
+        flip() {
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.flipSound.play();
+                }
         }
 
-        match = function() {
-                this.matchSound.play();
+        match() {
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.matchSound.play();
+                }
         }
 
-        success = function() {
-                this.stopMusic();
-                this.succesSound.play();
+        success() {
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.stopMusic();
+                        this.succesSound.play();
+                }
 
         }
-        fail = function() {
-                this.stopMusic();
-                this.failSound.play();
+        fail() {
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.stopMusic();
+                        this.failSound.play();
+                }
         }
 
-        muteMusic = function() {
-                let soundBtn = $('#sound');
+        muteMusic() {
 
-                if (soundBtn.hasClass('fa-volume-up')) {
-                        soundBtn.removeClass('fa-volume-up');
-                        soundBtn.addClass('fa-volume-mute');
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.soundBtn.removeClass('fa-volume-up');
+                        this.soundBtn.addClass('fa-volume-mute');
                         this.stopMusic();
                 }
                 else {
-                        soundBtn.removeClass('fa-volume-mute');
-                        soundBtn.addClass('fa-volume-up');
+                        this.soundBtn.removeClass('fa-volume-mute');
+                        this.soundBtn.addClass('fa-volume-up');
                         this.startMusic();
                 }
-
 
         }
 
@@ -60,37 +70,47 @@ class ScoreController {
         constructor(cardsArray) {
                 this.failTitle = 'Fail';
                 this.failMessage = 'That was a disaster';
-                this.successTitle = 'Completed'
+                this.successTitle = 'Completed';
                 this.oneStar = 'You can do better than that';
                 this.twoStar = 'Keep trying';
-                this.threeStar = 'Not a bad attempt'
-                this.fourStar = 'Well done, thats a great effort'
-                this.fiveStar = 'Excellent the knights of the realm will be thrilled with you!'
+                this.threeStar = 'Not a bad attempt';
+                this.fourStar = 'Well done, thats a great effort';
+                this.fiveStar = 'Excellent the knights of the realm will be thrilled with you!';
 
-                this.numberOfCards = cardsArray.length;
+                this.cards = cardsArray;
+                this.numberOfCards = this.cards.length;
 
                 this.scoreTitle = $('#scoreTitle');
-                this.scoreMessage = $('#endGameMessage')
+                this.scoreMessage = $('#endGameMessage');
         }
-        fail = function() {
+        resetScore() {
+                $('#star1').removeClass('star-gold');
+                $('#star2').removeClass('star-gold');
+                $('#star3').removeClass('star-gold');
+                $('#star4').removeClass('star-gold');
+                $('#star5').removeClass('star-gold');
+        }
+
+        fail() {
+                this.resetScore();
                 this.scoreTitle.html(this.failTitle);
                 this.scoreMessage.html(this.failMessage);
         }
 
-        oneStarMessage = function() {
+        oneStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.oneStar);
                 $('#star1').addClass('star-gold');
         }
 
-        twoStarMessage = function() {
+        twoStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.twoStar);
                 $('#star1').addClass('star-gold');
                 $('#star2').addClass('star-gold');
         }
 
-        threeStarMessage = function() {
+        threeStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.threeStar);
                 $('#star1').addClass('star-gold');
@@ -98,7 +118,7 @@ class ScoreController {
                 $('#star3').addClass('star-gold');
         }
 
-        fourStarMessage = function() {
+        fourStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.fourStar);
                 $('#star1').addClass('star-gold');
@@ -107,7 +127,7 @@ class ScoreController {
                 $('#star4').addClass('star-gold');
         }
 
-        fiveStarMessage = function() {
+        fiveStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.fiveStar);
                 $('#star1').addClass('star-gold');
@@ -117,7 +137,8 @@ class ScoreController {
                 $('#star5').addClass('star-gold');
         }
 
-        scoreCalculator = function(timeRemaining, totalTime, turns) {
+        scoreCalculator(timeRemaining, totalTime, turns) {
+                this.resetScore();
                 this.score = this.timeCalculator(timeRemaining, totalTime) + this.turnsCalculator(turns);
 
                 if (this.score >= 90) {
@@ -137,7 +158,7 @@ class ScoreController {
                 }
         }
 
-        timeCalculator = function(timeRemaining, totalTime) {
+        timeCalculator(timeRemaining, totalTime) {
                 this.percentages = totalTime / 5;
                 this.oneStarTime = this.percentages * 0.5;
                 this.twoStarTime = this.percentages * 1.5;
@@ -168,7 +189,7 @@ class ScoreController {
 
         }
 
-        turnsCalculator = function(turns) {
+        turnsCalculator(turns) {
                 this.oneStarTurns = this.numberOfCards * 3;
                 this.twoStarTurns = this.numberOfCards * 2.5;
                 this.threeStarTurns = this.numberOfCards * 2.1;
@@ -192,12 +213,12 @@ class ScoreController {
                 }
         }
 
-        matchDisplay = function(matches) {
+        matchDisplay(matches, pairs) {
                 let matchesEl = $('#matches');
                 let amountEl = $('#amount');
 
                 matchesEl.html(matches);
-                amountEl.html(this.numberOfCards/2);
+                amountEl.html(pairs);
 
         }
 
@@ -210,35 +231,36 @@ class ModeSelection {
                 this.hardBtn = $('#hard-mode');
         }
         //applies the active class depending upon the button selected
-        easyMode = function() {
+        easyMode() {
                 this.easyBtn.on('click', () => {
                         this.easyBtn.addClass('btn-active');
                         this.mediumBtn.removeClass('btn-active');
                         this.hardBtn.removeClass('btn-active');
-                        
+
                         $('.card-med').addClass('remove');
                         $('.card-hard').addClass('remove');
-                })
+                });
         }
 
-        medMode = function() {
+        medMode() {
                 this.mediumBtn.on('click', () => {
                         this.mediumBtn.addClass('btn-active');
                         this.easyBtn.removeClass('btn-active');
                         this.hardBtn.removeClass('btn-active');
-                        
+
                         $('.card-med').removeClass('remove');
                         $('.card-hard').addClass('remove');
-                })
+                });
         }
-        hardMode = function() {
+        hardMode() {
                 this.hardBtn.on('click', () => {
                         this.hardBtn.addClass('btn-active');
                         this.mediumBtn.removeClass('btn-active');
                         this.easyBtn.removeClass('btn-active');
                         
+                        $('.card-med').removeClass('remove');
                         $('.card-hard').removeClass('remove');
-                })
+                });
         }
 
 }
@@ -252,17 +274,18 @@ class CardMatch {
                 this.timeRemaining = totalTime;
                 this.timer = $('#time-remaining');
                 this.turns = $('#turns-count');
-                this.totalClicks = 0
-                this.numMatches
+                this.totalClicks = 0;
+                this.numMatches;
+                this.pairs;
 
                 this.audioController = new AudioController();
                 this.score = new ScoreController(this.cardArray);
         }
 
         //Randomises the card layout by shuffling the grid order
-        shuffleCards = function(cards) {
+        shuffleCards(cards) {
                 let randomIndex = 0;
-                let temp = 0;
+           
                 for (let i = this.cardArray.length - 1; i > 0; i--) {
                         randomIndex = Math.floor(Math.random() * (i + 1));
 
@@ -273,19 +296,19 @@ class CardMatch {
                 }
         }
 
-        hideCard = function() {
+        hideCard() {
                 $(this.cardArray).each(function() {
-                        $(this).removeClass('visible')
-                })
+                        $(this).removeClass('visible');
+                });
         }
 
-        setName = function() {
+        setName() {
                 var playerName = $('#name').val();
 
                 $('#scoreName').html(playerName);
         }
 
-        configureTimeOut = function(audio, shuffle, timeR, busy, countdown, countdownFunc) {
+        configureTimeOut(audio, shuffle, timeR, busy, countdown, countdownFunc) {
                 setTimeout(() => {
 
                         this.audioController.startMusic();
@@ -293,23 +316,29 @@ class CardMatch {
                         this.busy = false;
                         this.countDown = this.startCountdown();
 
-                }, 500)
+                }, 500);
         }
 
-        resetGame = function() {
-                this.score.matchDisplay(0);
+        stopGame() {
                 clearInterval(this.countDown);
+                this.audioController.stopMusic();
         }
 
-        startGame = function() {
+        resetGame() {
+                clearInterval(this.countDown);
+                this.score.matchDisplay(0, this.pairs);
+
+        }
+
+        startGame() {
                 //call mode selection here
 
-                this.resetGame()
+                this.resetGame();
                 this.cardToBeChecked = null;
                 this.totalClicks = 0;
                 this.timeRemaining = this.totalTime;
                 this.matchedCards = [];
-                this.numMatches = 0
+                this.numMatches = 0;
 
                 this.busy = true;
 
@@ -323,16 +352,16 @@ class CardMatch {
                         this.busy = false;
                         this.countDown = this.startCountdown();
 
-                }, 500)
+                }, 500);
 
-                this.timer = this.timer.text(this.timeRemaining)
+                this.timer = this.timer.text(this.timeRemaining);
                 this.turns = this.turns.text(this.totalClicks);
 
                 this.hideCard();
 
         }
 
-        startCountdown = function() {
+        startCountdown() {
                 return setInterval(() => {
                         this.timeRemaining--;
                         this.timer = this.timer.text(this.timeRemaining);
@@ -340,36 +369,36 @@ class CardMatch {
                                 this.gameOver();
                         }
 
-                }, 1000)
+                }, 1000);
 
 
         }
 
-        gameOver = function() {
+        gameOver() {
                 clearInterval(this.countDown);
                 this.audioController.fail();
                 this.score.fail();
                 $('#scoreModal').modal({
                         backdrop: 'static',
                         keyboard: false
-                })
-                $('#scoreModal').modal('show')
+                });
+                $('#scoreModal').modal('show');
         }
 
-        victory = function() {
+        victory() {
                 clearInterval(this.countDown);
                 this.audioController.success();
                 this.score.scoreCalculator(this.timeRemaining, this.totalTime, this.totalClicks);
                 $('#scoreModal').modal({
                         backdrop: 'static',
                         keyboard: false
-                })
-                $('#scoreModal').modal('show')
+                });
+                $('#scoreModal').modal('show');
 
         }
 
 
-        cardFlip = function(card) {
+        cardFlip(card) {
                 if (this.canCardFlip(card)) {
                         this.audioController.flip();
                         this.totalClicks++;
@@ -388,7 +417,7 @@ class CardMatch {
 
         }
 
-        checkCardMatch = function(card) {
+        checkCardMatch(card) {
 
                 var currentCard = [this.getCardType(card), card];
                 var checkCard = [this.getCardType(this.cardToBeChecked), this.cardToBeChecked];
@@ -396,22 +425,22 @@ class CardMatch {
                 if (currentCard[0] === checkCard[0]) {
                         //Match
                         this.cardMatched(currentCard, checkCard);
-                        this.cardToBeChecked = null
+                        this.cardToBeChecked = null;
 
                 }
 
                 else {
                         //mis Match
                         this.cardNotMatch(currentCard, checkCard);
-                        this.cardToBeChecked = null
+                        this.cardToBeChecked = null;
                 }
 
 
         }
 
-        cardNotMatch = function(card1, card2) {
+        cardNotMatch(card1, card2) {
                 this.busy = true;
-                console.log('Mismatch')
+                console.log('Mismatch');
 
 
 
@@ -422,19 +451,19 @@ class CardMatch {
 
                         this.busy = false;
 
-                }, 1000)
+                }, 1000);
 
                 console.log('hello');
         }
 
 
-        cardMatched = function(card1, card2) {
+        cardMatched(card1, card2) {
 
                 this.busy = true;
                 this.audioController.match();
                 setTimeout(() => {
                         this.busy = false;
-                }, 1500)
+                }, 1500);
 
                 this.matchedCards.push(card1[0]);
                 this.matchedCards.push(card2[0]);
@@ -447,12 +476,12 @@ class CardMatch {
 
         }
 
-        getCardType = function(card) {
+        getCardType(card) {
                 let cardType = card.getElementsByClassName('card-value')[0].src;
                 return cardType;
         }
 
-        canCardFlip = function(card) {
+        canCardFlip(card) {
 
                 let cardValue = this.getCardType(card);
                 if (!this.busy && !this.matchedCards.includes(cardValue) && card !== this.cardToBeChecked) {
@@ -468,70 +497,74 @@ $(document).ready(function() {
         $('#startModal').modal({
                 backdrop: 'static',
                 keyboard: false
-        })
+        });
         $("#startModal").modal('show');
         // if statement for differernt modes
 
         let easyBtn = $('#easy-mode');
         let mediumBtn = $('#medium-mode');
         let hardBtn = $('#hard-mode');
-        let cardArray;
         let gameTime;
         let cards = $('.card');
-        let mode = new ModeSelection;
+        let mode = new ModeSelection();
         let game = new CardMatch(100, cards);
         let start = $('#start-btn');
         let playAgain = $('#play-again');
         let sidePlayAgain = $('#side-playAgain');
         let mute = $('#sound');
-        let rules = $('rules');
-        
-        console.log(cards);
-        
+        let rules = $('#rules');
+        let menu = $('#menu');
+
+        console.log('hello');
+
 
         easyBtn.on('click', () => {
                 mode.easyMode();
-                gameTime = 30
+                gameTime = 30;
                 game.totalTime = gameTime;
                 cards = $('.card-easy');
-                game.cardArray = cards
-        })
+                game.cardArray = cards;
+                game.pairs = 4;
+        });
 
         mediumBtn.on('click', () => {
                 mode.medMode();
-                gameTime = 60
+                gameTime = 60;
                 game.totalTime = gameTime;
-                cards = $.merge($('.card-easy'),$('.card-med'));
-                game.cardArray = cards
-        })
+                cards = $.merge($('.card-easy'), $('.card-med'));
+                game.cardArray = cards;
+                game.pairs = 6;
+        });
 
         hardBtn.on('click', () => {
                 mode.hardMode();
-                gameTime = 100
+                gameTime = 100;
                 game.totalTime = gameTime;
                 cards = $('.card');
-                game.cardArray = cards
-        })
+                game.cardArray = cards;
+                game.pairs = 8;
+        });
 
 
         //sets difficulty based on btn pressed
 
         //opens rules section
         rules.on('click', function() {
-                $("#rulesModal").modal('show');
+                $('.mode-select').toggle('slow');
+                $('#rules-text').toggle('slow');
 
         });
 
         //initialises card game
         start.on('click', function() {
-                
-               if($('#name').val() === '' || $('#name').val() === undefined){
+
+                if ($('#name').val() === '' || $('#name').val() === undefined) {
                         alert('Please enter your name');
-                        
+
                 }
-                else{
-                $('#startModal').modal('hide');
-                game.startGame();
+                else {
+                        $('#startModal').modal('hide');
+                        game.startGame();
                 }
         });
         //mutes music
@@ -540,11 +573,16 @@ $(document).ready(function() {
         });
         //Allows game to be re
         playAgain.on('click', function() {
-                
-                $("#startModal").modal('show');
-                
-               // game.startGame();
 
+                $("#startModal").modal('show');
+
+                // game.startGame();
+
+        });
+
+        menu.on('click', function() {
+                game.stopGame();
+                $("#startModal").modal('show');
         });
 
         sidePlayAgain.on('click', function() {

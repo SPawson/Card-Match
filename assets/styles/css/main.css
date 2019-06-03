@@ -1,3 +1,5 @@
+
+
 /********************
     Universal
 *********************/
@@ -9,6 +11,7 @@ body {
     margin: 0px;
     padding: 0px;
     overflow-x: hidden;
+    font-family: 'Cinzel', serif;
 }
 
 
@@ -20,7 +23,9 @@ body {
     text-align: center;
 }
 
-
+.match-text{
+    font-size: 22px;
+}
 
 /********************
     header
@@ -30,14 +35,21 @@ header {
     background-color: #2D2D34;
     font-weight: bold;
     font-size: 32px;
-    color: #F1E4E8;
-    font-family: 'game-of-thrones';
+    color: #fafafa;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin-left: 10px;
     padding: 5px;
-    font-family: 'game-of-thrones';
+}
+
+h1 {
+    text-align: center;
 }
 
 /********************
@@ -61,9 +73,19 @@ h1,h2,h3,h4,h5,h6 {
 *********************/
 
 .game-info-container {
+    display: flex;
+    justify-content: center;
     color: white;
-    margin-top: 45px;
-    margin-bottom: 30px;
+    margin: 45px auto;
+    
+}
+
+.time-container{
+    margin: 0 auto;
+}
+
+.turns-container{
+    margin: 0 auto;
 }
 
 /********************
@@ -87,22 +109,13 @@ h1,h2,h3,h4,h5,h6 {
     transition: all 0.5s ease-in-out;
 }
 
-.card-container .remove{
+.card-container .remove {
     display: none;
 }
 
 .card.visible {
     transform: rotateY(180deg);
 }
-
-
-/*.card:hover .card-back{
-    transform: rotateY(180deg);
-}
-
-.card:hover .card-front{
-    transform: rotateY(0);
-}*/
 
 .card-face {
     position: absolute;
@@ -130,8 +143,9 @@ h1,h2,h3,h4,h5,h6 {
 
 }
 
-.card-front img,.card-back img {
-    height:100%;
+.card-front img,
+.card-back img {
+    height: 100%;
     width: 100%;
 }
 
@@ -144,14 +158,12 @@ h1,h2,h3,h4,h5,h6 {
     min-height: 100%;
 }
 
-.player-info-container {
-    
-}
+.player-info-container {}
 
 .player-stats {
     margin-bottom: 15px;
-    background-color: #e0c975;
-    border: 1px solid #e0c975;
+    background-color: #efd98e;
+    border: 1px solid #efd98e;
     margin: 15px auto;
     border-radius: 5px;
 }
@@ -162,19 +174,23 @@ h1,h2,h3,h4,h5,h6 {
     margin-top: -5px;
 }
 
-.star-greyed{
+.star-greyed {
     color: grey;
 }
 
-.star-gold{
+.star-gold {
     color: #ffcc37;
 }
+
+
 
 /********************
     Icon-Container
 *********************/
-.icon-container{
+
+.icon-container {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .icon {
@@ -186,31 +202,33 @@ h1,h2,h3,h4,h5,h6 {
     line-height: 0px;
     text-align: center;
     color: #fafafa;
-    background: #8f8f8f;
-    margin: 0px 5px;;
+    background: #717171;
+    margin: 0px 5px;
+    
 }
 
 /********************
     Modal Common Styles
 *********************/
 
-.modal-color{
+.modal-color {
     background-color: #949393;
 }
-.modal-border-color{
+
+.modal-border-color {
     border-color: black;
 }
 
-.modal-txtbox{
+.modal-txtbox {
     background-color: #d4d4d4;
 }
 
-.btn-drkred{
+.btn-drkred {
     background-color: #7b4e4e;
     border-color: #7b4e4e;
 }
 
-.btn-drkred:hover{
+.btn-drkred:hover {
     background-color: #734848;
     border-color: #734848;
 }
@@ -219,58 +237,72 @@ h1,h2,h3,h4,h5,h6 {
     Start Modal
 *********************/
 
-.mode-select{
+.mode-select {
     margin: 30px auto;
 }
 
-.mode-header{
+.mode-header {
     margin-bottom: 10px;
 }
 
-.btn-mode{
+.btn-mode {
     font-size: 16px;
     color: #2d1c1c;
     font-weight: bold;
     background-color: white;
-    height: 70px;
+    height: 50px;
     width: 90px;
+    margin-bottom: 10px;
 }
 
 #easy-mode:focus,
-#medium-mode:focus, #hard-mode:focus {
+#medium-mode:focus,
+#hard-mode:focus {
     outline: none;
     box-shadow: none;
 }
 
-.btn-easy{
+.btn-easy {
     background-color: #c1e082;
 }
-.btn-easy:hover{
+
+.btn-easy:hover {
     background-color: #c1e084;
 }
 
-.btn-med{
+.btn-med {
     background-color: #e2bb74;
 }
-.btn-med:hover{
+
+.btn-med:hover {
     background-color: #e2bb76;
 }
 
-.btn-hard{
+.btn-hard {
     background-color: #cc5c5c;
 }
-.btn-hard:hover{
+
+.btn-hard:hover {
     background-color: #cc5c5f;
 }
 
-.btn-active{
-   border:2px solid #ffffaa;
+.btn-active {
+    border: 2px solid #ffffaa;
 }
 
-@font-face {
-    font-family: 'game-of-thrones';
-    src: url('../../fonts/game-of-thrones.ttf') format('tff');
+#rules-text{
+    display: none;
+}
 
+.rules-section{
+    background-color: #777777;
+    border: 1px solid #777777;
+    border-radius: 5px;
+}
+
+.rules-section p {
+    padding: 5px;
+    margin-bottom: 2px;
 }
 
 /********************
@@ -279,9 +311,38 @@ h1,h2,h3,h4,h5,h6 {
 
 @media(min-width: 768px) {
     .card {
-    height: 160px;
-    width: 120px;
+        height: 160px;
+        width: 120px;
     }
+
+    .mode-select {
+        margin: 30px auto;
+    }
+
+    .mode-header {
+        margin-bottom: 10px;
+    }
+    
+    .btn-mode {
+    font-size: 16px;
+    color: #2d1c1c;
+    font-weight: bold;
+    height: 70px;
+    width: 90px;
+}
 }
 
-
+@media (min-width: 1200px) {
+    h1{
+        text-align: left;
+    }
+    
+    .btn-mode {
+    font-size: 16px;
+    color: #2d1c1c;
+    font-weight: bold;
+    height: 70px;
+    width: 90px;
+    margin-bottom: 10px;
+}
+}
