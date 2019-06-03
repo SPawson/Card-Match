@@ -8,6 +8,8 @@ class AudioController {
 
                 this.backgroundMusic.volume = 0.1;
                 this.backgroundMusic.loop = true;
+
+                this.soundBtn = $('#sound')
         }
 
         startMusic = function() {
@@ -20,16 +22,22 @@ class AudioController {
         }
 
         flip = function() {
-                this.flipSound.play();
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.flipSound.play();
+                }
         }
 
         match = function() {
-                this.matchSound.play();
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.matchSound.play();
+                }
         }
 
         success = function() {
-                this.stopMusic();
-                this.succesSound.play();
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.stopMusic();
+                        this.succesSound.play();
+                }
 
         }
         fail = function() {
@@ -38,16 +46,15 @@ class AudioController {
         }
 
         muteMusic = function() {
-                let soundBtn = $('#sound');
 
-                if (soundBtn.hasClass('fa-volume-up')) {
-                        soundBtn.removeClass('fa-volume-up');
-                        soundBtn.addClass('fa-volume-mute');
+                if (this.soundBtn.hasClass('fa-volume-up')) {
+                        this.soundBtn.removeClass('fa-volume-up');
+                        this.soundBtn.addClass('fa-volume-mute');
                         this.stopMusic();
                 }
                 else {
-                        soundBtn.removeClass('fa-volume-mute');
-                        soundBtn.addClass('fa-volume-up');
+                        this.soundBtn.removeClass('fa-volume-mute');
+                        this.soundBtn.addClass('fa-volume-up');
                         this.startMusic();
                 }
 
@@ -67,12 +74,22 @@ class ScoreController {
                 this.fourStar = 'Well done, thats a great effort'
                 this.fiveStar = 'Excellent the knights of the realm will be thrilled with you!'
 
-                this.numberOfCards = cardsArray.length;
+                this.cards = cardsArray
+                this.numberOfCards = this.cards.length;
 
                 this.scoreTitle = $('#scoreTitle');
                 this.scoreMessage = $('#endGameMessage')
         }
+        resetScore = function() {
+                $('#star1').removeClass('star-gold');
+                $('#star2').removeClass('star-gold');
+                $('#star3').removeClass('star-gold');
+                $('#star4').removeClass('star-gold');
+                $('#star5').removeClass('star-gold');
+        }
+
         fail = function() {
+                this.resetScore();
                 this.scoreTitle.html(this.failTitle);
                 this.scoreMessage.html(this.failMessage);
         }
@@ -118,6 +135,7 @@ class ScoreController {
         }
 
         scoreCalculator = function(timeRemaining, totalTime, turns) {
+                this.resetScore();
                 this.score = this.timeCalculator(timeRemaining, totalTime) + this.turnsCalculator(turns);
 
                 if (this.score >= 90) {
@@ -192,12 +210,12 @@ class ScoreController {
                 }
         }
 
-        matchDisplay = function(matches) {
+        matchDisplay = function(matches, pairs) {
                 let matchesEl = $('#matches');
                 let amountEl = $('#amount');
 
                 matchesEl.html(matches);
-                amountEl.html(this.numberOfCards/2);
+                amountEl.html(pairs);
 
         }
 
@@ -215,7 +233,7 @@ class ModeSelection {
                         this.easyBtn.addClass('btn-active');
                         this.mediumBtn.removeClass('btn-active');
                         this.hardBtn.removeClass('btn-active');
-                        
+
                         $('.card-med').addClass('remove');
                         $('.card-hard').addClass('remove');
                 })
@@ -226,7 +244,7 @@ class ModeSelection {
                         this.mediumBtn.addClass('btn-active');
                         this.easyBtn.removeClass('btn-active');
                         this.hardBtn.removeClass('btn-active');
-                        
+
                         $('.card-med').removeClass('remove');
                         $('.card-hard').addClass('remove');
                 })
@@ -236,7 +254,7 @@ class ModeSelection {
                         this.hardBtn.addClass('btn-active');
                         this.mediumBtn.removeClass('btn-active');
                         this.easyBtn.removeClass('btn-active');
-                        
+
                         $('.card-hard').removeClass('remove');
                 })
         }
@@ -254,6 +272,7 @@ class CardMatch {
                 this.turns = $('#turns-count');
                 this.totalClicks = 0
                 this.numMatches
+                this.pairs;
 
                 this.audioController = new AudioController();
                 this.score = new ScoreController(this.cardArray);
@@ -297,8 +316,9 @@ class CardMatch {
         }
 
         resetGame = function() {
-                this.score.matchDisplay(0);
                 clearInterval(this.countDown);
+                this.score.matchDisplay(0, this.pairs);
+
         }
 
         startGame = function() {
@@ -485,9 +505,9 @@ $(document).ready(function() {
         let sidePlayAgain = $('#side-playAgain');
         let mute = $('#sound');
         let rules = $('rules');
-        
+
         console.log(cards);
-        
+
 
         easyBtn.on('click', () => {
                 mode.easyMode();
@@ -495,14 +515,16 @@ $(document).ready(function() {
                 game.totalTime = gameTime;
                 cards = $('.card-easy');
                 game.cardArray = cards
+                game.pairs = 4;
         })
 
         mediumBtn.on('click', () => {
                 mode.medMode();
                 gameTime = 60
                 game.totalTime = gameTime;
-                cards = $.merge($('.card-easy'),$('.card-med'));
+                cards = $.merge($('.card-easy'), $('.card-med'));
                 game.cardArray = cards
+                game.pairs = 6;
         })
 
         hardBtn.on('click', () => {
@@ -511,6 +533,7 @@ $(document).ready(function() {
                 game.totalTime = gameTime;
                 cards = $('.card');
                 game.cardArray = cards
+                game.pairs = 8;
         })
 
 
@@ -524,14 +547,14 @@ $(document).ready(function() {
 
         //initialises card game
         start.on('click', function() {
-                
-               if($('#name').val() === '' || $('#name').val() === undefined){
+
+                if ($('#name').val() === '' || $('#name').val() === undefined) {
                         alert('Please enter your name');
-                        
+
                 }
-                else{
-                $('#startModal').modal('hide');
-                game.startGame();
+                else {
+                        $('#startModal').modal('hide');
+                        game.startGame();
                 }
         });
         //mutes music
@@ -540,10 +563,10 @@ $(document).ready(function() {
         });
         //Allows game to be re
         playAgain.on('click', function() {
-                
+
                 $("#startModal").modal('show');
-                
-               // game.startGame();
+
+                // game.startGame();
 
         });
 
