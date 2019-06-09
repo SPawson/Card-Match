@@ -187,6 +187,7 @@ h1 {
 
 .score{
     font-size: 2.0rem;
+    margin-bottom: 15px;
 }
 
 /********************
@@ -304,8 +305,8 @@ h1 {
 }
 
 .rules-section {
-    background-color: #f7f7f7;
-    border: 1px solid #f7f7f7;
+    background-color: #e4e4e4;
+    border: 1px solid #e4e4e4;
     border-radius: 5px;
 }
 
