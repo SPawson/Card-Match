@@ -14,7 +14,7 @@ $(document).ready(function() {
         let mode = new ModeSelection();
         let game = new CardMatch(100, cards);
         let start = $('#start-btn');
-        let playAgain = $('#play-again');
+        let playAgain = $('#return-menu');
         let sidePlayAgain = $('#side-playAgain');
         let mute = $('#sound');
         let rules = $('#rules');
@@ -91,7 +91,9 @@ $(document).ready(function() {
         });
 
         sidePlayAgain.on('click', function() {
-                game.startGame();
+                
+                      game.startGame();  
+                
 
         });
 
@@ -363,7 +365,7 @@ class ModeSelection {
                         this.hardBtn.addClass('btn-active');
                         this.mediumBtn.removeClass('btn-active');
                         this.easyBtn.removeClass('btn-active');
-                        
+
                         $('.card-med').removeClass('remove');
                         $('.card-hard').removeClass('remove');
                 });
@@ -391,7 +393,7 @@ class CardMatch {
         //Randomises the card layout by shuffling the grid order
         shuffleCards(cards) {
                 let randomIndex = 0;
-           
+
                 for (let i = this.cardArray.length - 1; i > 0; i--) {
                         randomIndex = Math.floor(Math.random() * (i + 1));
 
@@ -432,6 +434,7 @@ class CardMatch {
 
         resetGame() {
                 clearInterval(this.countDown);
+                this.timer = this.timer.text(this.timeRemaining);
                 this.score.matchDisplay(0, this.pairs);
 
         }
@@ -468,14 +471,15 @@ class CardMatch {
         }
 
         startCountdown() {
-                return setInterval(() => {
+                let counter = () => {
                         this.timeRemaining--;
                         this.timer = this.timer.text(this.timeRemaining);
                         if (this.timeRemaining === 0) {
                                 this.gameOver();
                         }
+                }
 
-                }, 1000);
+                return setInterval(counter, 1000);
 
 
         }
@@ -597,5 +601,3 @@ class CardMatch {
 
         }
 }
-
-
