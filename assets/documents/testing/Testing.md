@@ -1,8 +1,9 @@
 <h1>Testing</h1>
+<p>In this document I am going to illustrate the various tests that I have performed on my code to ensure that it is functional and meets required web standards.</p>
 <h2>Automated Testing</h2>
 <hr>
 <h3>Validation</h3>
-<p>In order to ensure my code has meet the various standards, I have used the following validation services to test different elements of my code. </p>
+<p>In order to ensure my code has met the various web standards, I have used the following validation services to test different elements of my code. </p>
 <ul>
     <li><a href=”https://validator.w3.org/” target="_blank">W3C Markup Validation</a> was used to validate HTML code.</li>
     <li><a href=”https://jigsaw.w3.org/css-validator/” target="_blank">W3C CSS Validation</a> was used to validate CSS code.</li>
@@ -18,9 +19,15 @@
 <p> As I have used JQuery in my project, I have utilised the Jasmine <a href=”https://github.com/velesin/jasmine-jquery” target=”_blank”> JQuery CDN</a> to allow me to test functions where I have utilised JQuery.</p>
 <p>In order to test my project, I took the approach of starting with simple tests and expectations such as checking for classes being defined and then incrementally increased the level of expectation for each test as they grew in complexity. </p>
 <h4>Accessing the tests</h4>
-<ul>The Jasmine HTML page can be found <a href=”” target=”_blank”>here</a></ul>
-<ul>The Jasmine specification (test) file can be found <a href=”” target=”_blank”>here</a></ul>
-ul>The Javascript functions being tested can be found in my main js file <a href=”” target=”_blank”>here</a></ul>
+
+<ul>
+<li>The Jasmine HTML page can be found <a href=”../../jasmine-tests/jasmine-testing.html” target=”_blank”>here</a></li>
+
+<li>The Jasmine specification (test) file can be found <a href=”../../jasmine-tests/spec/main-spec.js” target=”_blank”>here</a></li>
+
+<li>The Javascript functions being tested can be found in my main js file <a href=”../../js/main.js” target=”_blank”>here</a></li>
+</ul>
+
 <p>In order for you to run the test files that I have created for my project. The entire project should be cloned from GitHub so that it can be run on a local machine. </p>
 <p>To run the tests:</p>
 <ol>
@@ -141,7 +148,6 @@ ul>The Javascript functions being tested can be found in my main js file <a href
     <li>Selected all different difficulty modes to ensure that they loaded all card sets correctly when selected. </li>
     <li>Started the game with each difficulty selected to ensure the correct amount of time was loaded into the game, along with the number of matches. </li>
     <li>Tried to change difficulty selection whilst rules section is loaded to ensure that the user cannot accidentally change difficulty whilst reading the rules. </li>
-
     <li>Tried the start button on all browser types to test that the game initialised correctly so that the user is able to start playing the game. </li>
     <li>Ensured no console log errors occurred on the user starting the game. </li>
 </ul>
@@ -163,8 +169,7 @@ ul>The Javascript functions being tested can be found in my main js file <a href
                     <li>Confirmed that clicking the button loaded the start menu correctly. </li>
                     <li>Attempted to click menu when already on the start menu, to ensure it couldn’t be loaded twice causing unexpected issues. </li>
                     <li>Tried the clicking the menu at various points in the game under various circumstances including difficulty and time left to ensure there were no unexpected issues. </li>
-
-                </ul>
+               </ul>
             </li>
             <li>Mute Button
                 <ul>
@@ -176,7 +181,6 @@ ul>The Javascript functions being tested can be found in my main js file <a href
                 </ul>
             </li>Reset Button
             <ul>
-
                 <li>Confirmed the reset button reset the time value, along with the number of turns taken. </li>
                 <li>Played the game until a number of matches were found then reset the game to ensure the match counter reset correctly. </li>
                 <li>Tried resetting the game during the card check phase of the game to confirm it would reset the game and cards correctly. </li>
@@ -196,14 +200,12 @@ ul>The Javascript functions being tested can be found in my main js file <a href
             <li>Played the game at different speeds to ensure that time influenced the score that the player received. </li>
         </ul>
     </li>
-
     <li>Turns
         <ul>
             <li>Loaded the game and ensured that the turns counter was set to 0 when the game finished loading. </li>
             <li>Played the game and ensured the turn counter went up for every turn taken. </li>
             <li>Played the game purposefully taking more and less turns to ensure the amount of turns had an effect of the score</li>
             <li>Ensured turn value reset to zero when game was reset</li>
-
         </ul>
     </li>
     <li>Game
@@ -226,8 +228,6 @@ ul>The Javascript functions being tested can be found in my main js file <a href
             <li>Confirmed the fail version of the score modal loads when the user doesn’t get all of the matches within the given time. </li>
             <li>Checked that all stars are greyed out when the fail screen is loaded </li>
             <li>Checked that the fail message appeared on the score screen. </li>
-
-
         </ul>
     </li>
     <li>Victory Score

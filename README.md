@@ -1,12 +1,11 @@
 <h1>Match Them All | Code Institute Second Milestone Project</h1>
 
-<p>This project is an interactive frontend project which has been designed for fans of the hit fantasy epic Game Of Thrones. The web application is a fun and engaging memory matching game, which requires a good memory and observation skills in order to achieve a high score. </p>
+<p>This project is an interactive frontend application which has been designed for fans of the hit fantasy epic Game Of Thrones. The web application is a fun and engaging memory matching game, which requires a good memory and observation skills in order to achieve a high score. </p>
 
-The application includes a number of features such as multiple difficulty settings which allow the user to add and remove cards to set a challenge, they feel comfortable with. The application also includes features such as a fully functional sound system which audibly notifies users of certain events within the game and a dynamic score system.
+<p>The application includes a number of features such as multiple difficulty settings which allow the user to add and remove cards to set a challenge, they feel comfortable with. The application also includes features such as a fully functional sound system which audibly notifies users of certain events within the game and a dynamic score system.</p>
 
 <p>The web application can be viewed on Github Live pages via the following address:
-<a target="_blank" href="https://spawson.github.io/Card-Match/
-">https://spawson.github.io/sallys-school-of-motoring/</a></p>
+<a target="_blank" href="https://spawson.github.io/Card-Match/">https://spawson.github.io/sallys-school-of-motoring/</a></p>
 </hr>
 <h2>UX</h2>
 
@@ -14,7 +13,7 @@ The application includes a number of features such as multiple difficulty settin
 <p>The main focus of this application is to allow fans of Game of thrones to enjoy a themed card game which will allow the user to enjoy the shows content in alternative ways. This therefore means that the whole design of the application is to further enhance the users experience to ensure they have a good experience when using the application. </p>
 <h3>Wireframes</h3>
 <p> During the development stage of my project I generated some wireframes for both the mobile and desktop approaches using Balsamiq. Throughout the course of developing the website, I have deviated from the wireframes in certain sections. This is mainly due to me discovering a better design during the development, or issues with implementing the feature. </p>
-<p>The wireframes have been uploaded with the rest of my project and can be viewed <a target="_blank" href="documents/Wireframes">here.</a></p>
+<p>The wireframes have been uploaded with the rest of my project and can be viewed <a target="_blank" href="assets/documents/wireframes">here.</a></p>
 
 <h3>User Stories</h3>
 <p>In the development stage of the project, I generated a number of user stories which heavily influenced the design decisions taken throughout the development of the application. They are as follows:</p>
@@ -194,8 +193,8 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 
 <li>Audio sound effects including the card flip, match success and fail sounds were all taken from <a href=”https://freesound.org/“ target=”_blank”>Free Sound</a></li>
 
-<li>The game music was taken from the Youtube Channel <a href=”https://www.youtube.com/watch?v=eZ_r1H9vHkI “ target=”_blank”>Always Music</a> </li>
-
+<li>The game music was taken from the Youtube Channel <a href=”https://www.youtube.com/watch?v=eZ_r1H9vHkI“ target=”_blank”>Always Music</a> </li>
+</ul>
 
 
 
@@ -205,5 +204,5 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 <h3>Acknowledgements</h3>
 <p>The game idea was inspired by other projects featured on Youtube such as by Traversy Media</p>
 
-<p>Thank you to members of the Slack community for assistance when I was encountering issues during the development and to my family friends for assisting with the testing of this application.</p>
+<p>Thank you to members of the Slack community and my mentor Tony Montaro for assistance when I was encountering issues during the development and to my family friends for assisting with the testing of this application.</p>
 
