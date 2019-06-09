@@ -511,7 +511,7 @@ class CardMatch {
         cardFlip(card) {
                 if (this.canCardFlip(card)) {
                         this.audioController.flip();
-                        this.totalClicks++;
+                        
                         this.turns = this.turns.text(this.totalClicks);
                         $(card).addClass('visible');
 
@@ -531,6 +531,8 @@ class CardMatch {
 
                 var currentCard = [this.getCardType(card), card];
                 var checkCard = [this.getCardType(this.cardToBeChecked), this.cardToBeChecked];
+                
+               
 
                 if (currentCard[0] === checkCard[0]) {
                         //Match
@@ -552,7 +554,7 @@ class CardMatch {
                 this.busy = true;
                 console.log('Mismatch');
 
-
+                
 
                 setTimeout(() => {
 
@@ -562,8 +564,9 @@ class CardMatch {
                         this.busy = false;
 
                 }, 1000);
-
-                console.log('hello');
+                
+         this.totalClicks++;
+         
         }
 
 
@@ -579,6 +582,7 @@ class CardMatch {
                 this.matchedCards.push(card2[0]);
                 this.numMatches++;
                 this.score.matchDisplay(this.numMatches);
+                this.totalClicks++;
 
                 if (this.matchedCards.length === this.cardArray.length) {
                         this.victory();
