@@ -1,12 +1,11 @@
 <h1>Match Them All | Code Institute Second Milestone Project</h1>
 
-<p>This project is an interactive frontend project which has been designed for fans of the hit fantasy epic Game Of Thrones. The web application is a fun and engaging memory matching game, which requires a good memory and observation skills in order to achieve a high score. </p>
+<p>This project is an interactive frontend application which has been designed for fans of the hit fantasy epic Game Of Thrones. The web application is a fun and engaging memory matching game, which requires a good memory and observation skills in order to achieve a high score. </p>
 
-The application includes a number of features such as multiple difficulty settings which allow the user to add and remove cards to set a challenge, they feel comfortable with. The application also includes features such as a fully functional sound system which audibly notifies users of certain events within the game and a dynamic score system.
+<p>The application includes a number of features such as multiple difficulty settings which allow the user to add and remove cards to set a challenge, they feel comfortable with. The application also includes features such as a fully functional sound system which audibly notifies users of certain events within the game and a dynamic score system.</p>
 
 <p>The web application can be viewed on Github Live pages via the following address:
-<a target="_blank" href="https://spawson.github.io/Card-Match/
-">https://spawson.github.io/sallys-school-of-motoring/</a></p>
+<a target="_blank" href="https://spawson.github.io/Card-Match/">https://spawson.github.io/sallys-school-of-motoring/</a></p>
 </hr>
 <h2>UX</h2>
 
@@ -194,8 +193,8 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 
 <li>Audio sound effects including the card flip, match success and fail sounds were all taken from <a href=”https://freesound.org/“ target=”_blank”>Free Sound</a></li>
 
-<li>The game music was taken from the Youtube Channel <a href=”https://www.youtube.com/watch?v=eZ_r1H9vHkI “ target=”_blank”>Always Music</a> </li>
-
+<li>The game music was taken from the Youtube Channel <a href=”https://www.youtube.com/watch?v=eZ_r1H9vHkI“ target=”_blank”>Always Music</a> </li>
+</ul>
 
 
 
@@ -205,5 +204,5 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 <h3>Acknowledgements</h3>
 <p>The game idea was inspired by other projects featured on Youtube such as by Traversy Media</p>
 
-<p>Thank you to members of the Slack community for assistance when I was encountering issues during the development and to my family friends for assisting with the testing of this application.</p>
+<p>Thank you to members of the Slack community and my mentor Tony Montaro for assistance when I was encountering issues during the development and to my family friends for assisting with the testing of this application.</p>
 
