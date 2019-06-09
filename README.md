@@ -13,7 +13,7 @@
 <p>The main focus of this application is to allow fans of Game of thrones to enjoy a themed card game which will allow the user to enjoy the shows content in alternative ways. This therefore means that the whole design of the application is to further enhance the users experience to ensure they have a good experience when using the application. </p>
 <h3>Wireframes</h3>
 <p> During the development stage of my project I generated some wireframes for both the mobile and desktop approaches using Balsamiq. Throughout the course of developing the website, I have deviated from the wireframes in certain sections. This is mainly due to me discovering a better design during the development, or issues with implementing the feature. </p>
-<p>The wireframes have been uploaded with the rest of my project and can be viewed <a target="_blank" href="documents/Wireframes">here.</a></p>
+<p>The wireframes have been uploaded with the rest of my project and can be viewed <a target="_blank" href="assets/documents/wireframes">here.</a></p>
 
 <h3>User Stories</h3>
 <p>In the development stage of the project, I generated a number of user stories which heavily influenced the design decisions taken throughout the development of the application. They are as follows:</p>
