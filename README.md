@@ -98,7 +98,7 @@ The application includes a number of features such as multiple difficulty settin
 
 <h3>Bootstrap</h3>
 <p>
-The project uses Bootstrap 4.3.1 framework and a variety of imported classes in order assist with implementing the structure, navigation, carousel and modal features seen on the site.
+The project uses Bootstrap 4.3.1 framework and a variety of imported classes in order assist with implementing the structure and modal features seen on the site.
 </p>
 <a target="_blank" href="https://getbootstrap.com/">https://getbootstrap.com/</a>
 
@@ -107,7 +107,7 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 <a target="_blank" href="https://jquery.com/">https://jquery.com/</a>
 
 <h3>Google Fonts</h3>
-<p>The project uses Google Fonts to provide the ‘Cinzel’ font that is used as the websites main font.</p>
+<p>The project uses Google Fonts to provide the ‘Cinzel’ font that is used as the applications main font.</p>
 <a target="_blank" href="https://fonts.google.com/">https://fonts.google.com/</a>
 
 <h3>Font Awesome</h3>
@@ -126,7 +126,7 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 
 <h2>Resources</h2>
 
-<p>Throughout the course of the project I also used the following resources to assist me in creating the website:</p>
+<p>Throughout the course of the project I also used the following resources to assist me in creating the application:</p>
 
 <ul>
 <li><a target="_blank" href="https://www.w3schools.com/">https://www.w3schools.com/</a></li>
@@ -138,3 +138,72 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 </ul>
 
 <hr>
+
+<h2>Testing</h2>
+<p>All testing that I have completed in regards to the user story can be viewed on a separate document <a target="_blank" href="assets/documents/testing/Testing.md">here</a></p>
+
+<h3>Issues Encountered</h3>
+<p>Throughout the course of my testing, I discovered a few bugs which I have detailed below:</p>
+<ul>
+<li>I encountered an issue where upon trying to start the game in Firefox and Safari, where the game would not initialise and would just stay on the game container screen. This prevented the user from interacting with the application any further. </li>
+<li>I encountered an issue early in development where the check card function would get the image source attribute, but the function was unable to compare the cards and check for a match or not. </li>
+<li>I encountered an issue where the audio would start to play again when the game was finished and reset. This then had to be pressed again in order to activate the mute function. </li>
+<li>I encountered an issue where the difficulty buttons would not change the number of cards being used or the amount of time and would display a console error. </li>
+<li>I encountered an issue where the start modal on Internet explorer would not load and therefore would prevent the user from being able to play the game. </li>
+
+
+</ul>
+
+<h3>Steps taken to resolve issues</h3>
+<ul>
+
+<li>I found when I entered my code into JSHint that I was getting errors for the majority of my class functions. This was down to me writing them as class properties which isn’t supported yet in certain browsers. As a result, I changed my class properties to constructor methods and this then cured the issues I was seeing with certain browsers such as Firefox.</li>
+<li>I found when viewing the data being passed into the compare function, that it was passing the DOM elements of the cards into the check function and not the image source value. As a result, I needed to keep the DOM element information as well, so I created two arrays and merged them into a common card array. In order to compare the image source, I then just needed to retrieve the nested array value of the image. </li>
+<li>I found that I had placed all of the controls for audio system inside of the CardMatch.startGame() function. As a result, everytime this function was called due to the game being reset. I was restarting the music despite the mute button being pressed on the previous game. In order to resolve this, I had to place the click functionality outside of the startGame function, so that it would not reset this when the game was restarted. </li>
+
+<li>I found initially that when I tried to change the difficulty. I was applying the changes to two global variables, which were being used to create the instance of the CardMatch class. However, I had not realised that these values were not taking effect as the instance of the class had already been created when the difficulty functions were being activated. Therefore, to resolve this, I changed the difficulty functions so that they would apply the changes in value to the class properties. </li>
+
+<h3>Unsolved Bugs</h3>
+<li>I need to carry out further testing and functionality checks with Internet explorer. This is due a few features not working correctly as a result of me using ES6 Javascript and certain CSS properties which are not fully supported by the browser. The kinds of issues I am seeing is with the grid property and the classes I have used within my Javascript. My goal is to carry out resolving certain issues until I can get the application running as intended in IE, however I cannot complete these fully as I haven’t found an effective solution. </li>
+
+<li>When testing on Safari, I have encountered a few known bugs in regard to playing audio files. This means that certain audio files do not always play at the correct times. I have also seen issues with the amount of audio files being played at one time. I have not yet been able to find an effective solution. </li>
+
+</ul>
+
+<h2>Deployment</h2>
+
+<p>I have deployed this project using Github live pages and this can be found <a target="_blank" href="https://spawson.github.io/Card-Match/"> here.</a></p>
+<hr>
+
+<h2>Credits</h2>
+
+<h3>Images</h3>
+<h4>Disclaimer</h4>
+<p>Please note this project is for educational purposes only and </p>
+
+<ul>
+
+<li>Images of the Game Of Thrones characters were taken from <a href=”https://awoiaf.westeros.org/index.php/A_Song_of_Ice_and_Fire” target=”_blank”>The Official A Song Of Ice And Fire Wikipedia page</a></li>
+
+<li>Knight for the back of the card image was taken from Google images</li>
+
+</ul>
+
+<h3>Audio</h3>
+<ul>
+
+<li>Audio sound effects including the card flip, match success and fail sounds were all taken from <a href=”https://freesound.org/“ target=”_blank”>Free Sound</a></li>
+
+<li>The game music was taken from the Youtube Channel <a href=”https://www.youtube.com/watch?v=eZ_r1H9vHkI “ target=”_blank”>Always Music</a> </li>
+
+
+
+
+
+
+
+<h3>Acknowledgements</h3>
+<p>The game idea was inspired by other projects featured on Youtube such as by Traversy Media</p>
+
+<p>Thank you to members of the Slack community for assistance when I was encountering issues during the development and to my family friends for assisting with the testing of this application.</p>
+
