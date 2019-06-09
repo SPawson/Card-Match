@@ -1,3 +1,109 @@
+$(document).ready(function() {
+        $('#startModal').modal({
+                backdrop: 'static',
+                keyboard: false
+        });
+        $("#startModal").modal('show');
+        // if statement for differernt modes
+
+        let easyBtn = $('#easy-mode');
+        let mediumBtn = $('#medium-mode');
+        let hardBtn = $('#hard-mode');
+        let gameTime;
+        let cards = $('.card');
+        let mode = new ModeSelection();
+        let game = new CardMatch(100, cards);
+        let start = $('#start-btn');
+        let playAgain = $('#play-again');
+        let sidePlayAgain = $('#side-playAgain');
+        let mute = $('#sound');
+        let rules = $('#rules');
+        let menu = $('#menu');
+
+        console.log('hello');
+
+
+        easyBtn.on('click', () => {
+                mode.easyMode();
+                gameTime = 30;
+                game.totalTime = gameTime;
+                cards = $('.card-easy');
+                game.cardArray = cards;
+                game.pairs = 4;
+        });
+
+        mediumBtn.on('click', () => {
+                mode.medMode();
+                gameTime = 60;
+                game.totalTime = gameTime;
+                cards = $.merge($('.card-easy'), $('.card-med'));
+                game.cardArray = cards;
+                game.pairs = 6;
+        });
+
+        hardBtn.on('click', () => {
+                mode.hardMode();
+                gameTime = 100;
+                game.totalTime = gameTime;
+                cards = $('.card');
+                game.cardArray = cards;
+                game.pairs = 8;
+        });
+
+
+        //sets difficulty based on btn pressed
+
+        //opens rules section
+        rules.on('click', function() {
+                $('.mode-select').toggle('slow');
+                $('#rules-text').toggle('slow');
+
+        });
+
+        //initialises card game
+        start.on('click', function() {
+
+                if ($('#name').val() === '' || $('#name').val() === undefined) {
+                        alert('Please enter your name');
+
+                }
+                else {
+                        $('#startModal').modal('hide');
+                        game.startGame();
+                }
+        });
+        //mutes music
+        mute.on('click', function() {
+                game.audioController.muteMusic();
+        });
+        //Allows game to be re
+        playAgain.on('click', function() {
+
+                $("#startModal").modal('show');
+
+                // game.startGame();
+
+        });
+
+        menu.on('click', function() {
+                game.stopGame();
+                $("#startModal").modal('show');
+        });
+
+        sidePlayAgain.on('click', function() {
+                game.startGame();
+
+        });
+
+        cards.on('click', function() {
+                game.cardFlip(this);
+        });
+
+
+
+
+});
+
 class AudioController {
         constructor() {
                 this.backgroundMusic = new Audio('assets/audio/bg-music/bg-music.mp3');
@@ -493,108 +599,3 @@ class CardMatch {
 }
 
 
-$(document).ready(function() {
-        $('#startModal').modal({
-                backdrop: 'static',
-                keyboard: false
-        });
-        $("#startModal").modal('show');
-        // if statement for differernt modes
-
-        let easyBtn = $('#easy-mode');
-        let mediumBtn = $('#medium-mode');
-        let hardBtn = $('#hard-mode');
-        let gameTime;
-        let cards = $('.card');
-        let mode = new ModeSelection();
-        let game = new CardMatch(100, cards);
-        let start = $('#start-btn');
-        let playAgain = $('#play-again');
-        let sidePlayAgain = $('#side-playAgain');
-        let mute = $('#sound');
-        let rules = $('#rules');
-        let menu = $('#menu');
-
-        console.log('hello');
-
-
-        easyBtn.on('click', () => {
-                mode.easyMode();
-                gameTime = 30;
-                game.totalTime = gameTime;
-                cards = $('.card-easy');
-                game.cardArray = cards;
-                game.pairs = 4;
-        });
-
-        mediumBtn.on('click', () => {
-                mode.medMode();
-                gameTime = 60;
-                game.totalTime = gameTime;
-                cards = $.merge($('.card-easy'), $('.card-med'));
-                game.cardArray = cards;
-                game.pairs = 6;
-        });
-
-        hardBtn.on('click', () => {
-                mode.hardMode();
-                gameTime = 100;
-                game.totalTime = gameTime;
-                cards = $('.card');
-                game.cardArray = cards;
-                game.pairs = 8;
-        });
-
-
-        //sets difficulty based on btn pressed
-
-        //opens rules section
-        rules.on('click', function() {
-                $('.mode-select').toggle('slow');
-                $('#rules-text').toggle('slow');
-
-        });
-
-        //initialises card game
-        start.on('click', function() {
-
-                if ($('#name').val() === '' || $('#name').val() === undefined) {
-                        alert('Please enter your name');
-
-                }
-                else {
-                        $('#startModal').modal('hide');
-                        game.startGame();
-                }
-        });
-        //mutes music
-        mute.on('click', function() {
-                game.audioController.muteMusic();
-        });
-        //Allows game to be re
-        playAgain.on('click', function() {
-
-                $("#startModal").modal('show');
-
-                // game.startGame();
-
-        });
-
-        menu.on('click', function() {
-                game.stopGame();
-                $("#startModal").modal('show');
-        });
-
-        sidePlayAgain.on('click', function() {
-                game.startGame();
-
-        });
-
-        cards.on('click', function() {
-                game.cardFlip(this);
-        });
-
-
-
-
-});
