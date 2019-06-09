@@ -5,7 +5,7 @@
 <p>The application includes a number of features such as multiple difficulty settings which allow the user to add and remove cards to set a challenge, they feel comfortable with. The application also includes features such as a fully functional sound system which audibly notifies users of certain events within the game and a dynamic score system.</p>
 
 <p>The web application can be viewed on Github Live pages via the following address:
-<a target="_blank" href="https://spawson.github.io/Card-Match/">https://spawson.github.io/sallys-school-of-motoring/</a></p>
+<a target="_blank" href="https://spawson.github.io/Card-Match/">https://spawson.github.io/Card-Match/</a></p>
 </hr>
 <h2>UX</h2>
 
