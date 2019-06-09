@@ -37,7 +37,6 @@ describe('Check javascript classes have loaded correctly', function() {
 
 describe('Check Start Modal functions work correctly', function() {
 
-    let mode;
 
     beforeEach(function() {
         setFixtures(`
@@ -92,7 +91,7 @@ describe('Check Start Modal functions work correctly', function() {
 
     describe('Check easy mode functions', function() {
         beforeEach(function() {
-            mode = new ModeSelection;
+            this.mode = new ModeSelection();
 
         });
 
@@ -106,19 +105,19 @@ describe('Check Start Modal functions work correctly', function() {
 
         it('easyMode() should be called', function() {
 
-            var spy = spyOn(mode, 'easyMode')
+            var spy = spyOn(this.mode, 'easyMode')
 
-            mode.easyMode();
+            this.mode.easyMode();
 
             expect(spy).toHaveBeenCalled()
         });
 
         it('btn-active to be applied when easy function activated', function() {
 
-            var spy = spyOn(mode, 'easyMode').and.callThrough();
+            var spy = spyOn(this.mode, 'easyMode').and.callThrough();
 
 
-            expect($('#easy-mode')).toHaveClass('.btn-active')
+            expect($('#easy-mode')).toHaveClass('btn-active')
         });
 
     });
@@ -171,6 +170,13 @@ describe('Check Start Modal functions work correctly', function() {
             expect(spy).toHaveBeenCalled()
         });
 
+        it('hardmode should load with the .btn-active class', function() {
+
+            let hardBtn = $('#hard-mode');
+
+            expect(hardBtn).toHaveClass('btn-active')
+        });
+
     });
 
 
@@ -186,12 +192,14 @@ describe('Check Start Modal functions work correctly', function() {
         })
 
     });
-    
+
     describe('Check start button function', function() {
         beforeEach(function() {
-            var game = new CardMatch;
-            
-            var score = new ScoreController;
+            var cards = ['Danny', 'Jon', 'Arya', 'Tyrion', 'mel', 'White', 'Jaime', 'Bran'];
+
+            this.game = new CardMatch(100, cards);
+
+            this.score = new ScoreController(cards);
 
         });
 
@@ -205,12 +213,83 @@ describe('Check Start Modal functions work correctly', function() {
 
         it('startGame() should be called', function() {
 
-            var spy = spyOn(game, 'startGame')
+            var spy = spyOn(this.game, 'startGame')
 
-            game.startGame();
+            this.game.startGame();
 
             expect(spy).toHaveBeenCalled()
         });
 
     });
 });
+
+describe('Player control dashboard functionality', function() {
+
+
+    beforeEach(function() {
+        setFixtures(`
+        
+        <div class="row icons-container">
+                        <div class="col-4 icon-container">
+                            <div class="background-icon">
+                                <i id="menu" class="fas fa-bars icon"></i>
+                            </div>
+                        </div>
+                        <div  class="col-4 icon-container">
+                            <div class="background-icon ">
+                                <i id="sound" class="fas fa-volume-up icon"></i>
+                            </div>
+                        </div>
+                        <div class="col-4 icon-container">
+                            <div class="background-icon">
+                                <i id="side-playAgain" class="fas fa-redo-alt icon"></i>
+                            </div>
+                        </div>
+                        
+        `)
+    });
+    
+     beforeEach(function() {
+        setFixtures(`
+        
+        <div class="row icons-container">
+                        <div class="col-4 icon-container">
+                            <div class="background-icon">
+                                <i id="menu" class="fas fa-bars icon"></i>
+                            </div>
+                        </div>
+                        <div  class="col-4 icon-container">
+                            <div class="background-icon ">
+                                <i id="sound" class="fas fa-volume-up icon"></i>
+                            </div>
+                        </div>
+                        <div class="col-4 icon-container">
+                            <div class="background-icon">
+                                <i id="side-playAgain" class="fas fa-redo-alt icon"></i>
+                            </div>
+                        </div>
+                        
+        `)
+    });
+    
+    beforeEach(function() {
+    this.game
+    });
+
+
+    it('Menu button can be clicked', function() {
+      var spyEvent = spyOnEvent($('#menu'), 'click');
+            $('#menu').trigger("click");
+            expect('click').toHaveBeenTriggeredOn($('#menu'));
+            expect(spyEvent).toHaveBeenTriggered();
+    });
+    
+     it('Sound button can be clicked', function() {
+      var spyEvent = spyOnEvent($('#sound'), 'click');
+            $('#sound').trigger("click");
+            expect('click').toHaveBeenTriggeredOn($('#sound'));
+            expect(spyEvent).toHaveBeenTriggered();
+    });
+        
+})
+
