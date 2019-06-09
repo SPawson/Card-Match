@@ -20,7 +20,6 @@ $(document).ready(function() {
         let rules = $('#rules');
         let menu = $('#menu');
 
-        console.log('hello');
 
 
         easyBtn.on('click', () => {
@@ -552,7 +551,6 @@ class CardMatch {
 
         cardNotMatch(card1, card2) {
                 this.busy = true;
-                console.log('Mismatch');
 
                 
 
