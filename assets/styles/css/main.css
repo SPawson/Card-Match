@@ -1,5 +1,3 @@
-
-
 /********************
     Universal
 *********************/
@@ -23,7 +21,7 @@ body {
     text-align: center;
 }
 
-.match-text{
+.match-text {
     font-size: 22px;
 }
 
@@ -77,14 +75,14 @@ h1 {
     justify-content: center;
     color: white;
     margin: 45px auto;
-    
+
 }
 
-.time-container{
+.time-container {
     margin: 0 auto;
 }
 
-.turns-container{
+.turns-container {
     margin: 0 auto;
 }
 
@@ -93,11 +91,16 @@ h1 {
 *********************/
 
 .card-container {
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: auto 30px auto 30px auto 30px auto;
     grid-template-columns: repeat(4, auto);
     grid-gap: 30px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
-    margin-bottom: 45px
+    height: 100%;
+    margin-bottom: 45px;
 }
 
 .card {
@@ -182,7 +185,9 @@ h1 {
     color: #ffcc37;
 }
 
-
+.score{
+    font-size: 2.0rem;
+}
 
 /********************
     Icon-Container
@@ -204,7 +209,7 @@ h1 {
     color: #fafafa;
     background: #717171;
     margin: 0px 5px;
-    
+
 }
 
 /********************
@@ -231,6 +236,10 @@ h1 {
 .btn-drkred:hover {
     background-color: #734848;
     border-color: #734848;
+}
+
+.modal-title{
+    margin: 0 auto;
 }
 
 /********************
@@ -290,13 +299,13 @@ h1 {
     border: 2px solid #ffffaa;
 }
 
-#rules-text{
+#rules-text {
     display: none;
 }
 
-.rules-section{
-    background-color: #777777;
-    border: 1px solid #777777;
+.rules-section {
+    background-color: #f7f7f7;
+    border: 1px solid #f7f7f7;
     border-radius: 5px;
 }
 
@@ -322,27 +331,27 @@ h1 {
     .mode-header {
         margin-bottom: 10px;
     }
-    
+
     .btn-mode {
-    font-size: 16px;
-    color: #2d1c1c;
-    font-weight: bold;
-    height: 70px;
-    width: 90px;
-}
+        font-size: 16px;
+        color: #2d1c1c;
+        font-weight: bold;
+        height: 70px;
+        width: 90px;
+    }
 }
 
 @media (min-width: 1200px) {
-    h1{
+    h1 {
         text-align: left;
     }
-    
+
     .btn-mode {
-    font-size: 16px;
-    color: #2d1c1c;
-    font-weight: bold;
-    height: 70px;
-    width: 90px;
-    margin-bottom: 10px;
-}
+        font-size: 16px;
+        color: #2d1c1c;
+        font-weight: bold;
+        height: 70px;
+        width: 90px;
+        margin-bottom: 10px;
+    }
 }
