@@ -18,6 +18,8 @@
     now perform the unit tests as I write my JS in order to effectively write and test the code in a TTD model. </p>
 <p> As I have used JQuery in my project, I have utilised the Jasmine <a href=”https://github.com/velesin/jasmine-jquery” target=”_blank”> JQuery CDN</a> to allow me to test functions where I have utilised JQuery.</p>
 <p>In order to test my project, I took the approach of starting with simple tests and expectations such as checking for classes being defined and then incrementally increased the level of expectation for each test as they grew in complexity. </p>
+<p>Here you can see an image of my jasmine results:</p>
+<img src="jasmine-result.JPG">
 <h4>Accessing the tests</h4>
 
 <ul>
