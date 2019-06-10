@@ -144,8 +144,8 @@ describe('Check Start Modal functions work correctly', function() {
 
             expect(spy).toHaveBeenCalled()
         });
-        
-         it('btn-active to be applied when medium button clicked', function() {
+
+        it('btn-active to be applied when medium button clicked', function() {
 
             this.mode.medMode();
             $("#medium-mode").trigger("click");
@@ -184,8 +184,8 @@ describe('Check Start Modal functions work correctly', function() {
 
             expect(hardBtn).toHaveClass('btn-active')
         });
-        
-           it('btn-active to be applied when hard button clicked', function() {
+
+        it('btn-active to be applied when hard button clicked', function() {
 
             this.mode.hardMode();
             $("#hard-mode").trigger("click");
@@ -207,8 +207,8 @@ describe('Check Start Modal functions work correctly', function() {
             expect('click').toHaveBeenTriggeredOn($('#rules'));
             expect(spyEvent).toHaveBeenTriggered();
         })
-        
-        
+
+
 
     });
 
@@ -256,7 +256,7 @@ describe('Player control dashboard functionality', function() {
     beforeEach(function() {
         setFixtures(`
         
-        <div class="row icons-container">
+       <div class="row icons-container">
                         <div class="col-4 icon-container">
                             <div class="background-icon">
                                 <i id="menu" class="fas fa-bars icon"></i>
@@ -264,7 +264,7 @@ describe('Player control dashboard functionality', function() {
                         </div>
                         <div  class="col-4 icon-container">
                             <div class="background-icon ">
-                                <i id="sound" class="fas fa-volume-up icon"></i>
+                                <i id="sound" class="fas fa-volume-mute icon"></i>
                             </div>
                         </div>
                         <div class="col-4 icon-container">
@@ -272,6 +272,7 @@ describe('Player control dashboard functionality', function() {
                                 <i id="side-playAgain" class="fas fa-redo-alt icon"></i>
                             </div>
                         </div>
+                    </div>
                         
         `)
     });
@@ -313,6 +314,14 @@ describe('Player control dashboard functionality', function() {
             expect(spy).toHaveBeenCalled()
         });
 
+        it('fa-volume-mute to be applied when mute button clicked', function() {
+
+            this.game.audioController.muteMusic()
+            $("#sound").trigger("click");
+
+            expect($("#sound")).toHaveClass("fa-volume-mute");
+        });
+
     });
 
     describe('play again button functionality', function() {
@@ -335,4 +344,50 @@ describe('Player control dashboard functionality', function() {
 
     });
 
+})
+
+describe('Check Score modal operates correctly', function() {
+    
+      beforeEach(function() {
+        setFixtures(`
+        
+      <div class="modal fade" id="scoreModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center modal-color">
+                <div class="modal-header modal-border-color">
+                    <h2 class="modal-title" id="scoreTitle">Congratulations</h2>
+                </div>
+                <div class="modal-body ">
+                        <h4>You scored:</h4>
+                        <div class="score">
+                            <span id="star1" class="star star-greyed"><i class="fas fa-star"></i></span>
+                            <span id="star2" class="star star-greyed"><i class="fas fa-star"></i></span>
+                            <span id="star3" class="star star-greyed"><i class="fas fa-star"></i></span>
+                            <span id="star4" class="star star-greyed"><i class="fas fa-star"></i></span>
+                            <span id="star5" class="star star-greyed"><i class="fas fa-star"></i></span>
+                        </div>
+                        <p id="endGameMessage"></p>
+                        
+                </div>
+                <div class="modal-footer modal-border-color">
+                    <button id="return-menu" type="button" class="btn btn-primary btn-drkred" data-dismiss="modal">Return To Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+                        
+        `)
+    });
+    
+     describe('return to menu button operates correctly', function() {
+         
+          it('return to menu button can be clicked', function() {
+            var spyEvent = spyOnEvent($('#return-menu'), 'click');
+            $('#return-menu').trigger("click");
+            expect('click').toHaveBeenTriggeredOn($('#return-menu'));
+            expect(spyEvent).toHaveBeenTriggered();
+        });
+
+     })
+    
 })
