@@ -10,18 +10,27 @@ $(document).ready(function() {
         let mediumBtn = $('#medium-mode');
         let hardBtn = $('#hard-mode');
         let gameTime;
+        //Selects the array of cardsbased on class card
         let cards = $('.card');
         let mode = new ModeSelection();
-        let game = new CardMatch(100, cards);
+        let game = new CardMatch(60, cards);
         let start = $('#start-btn');
-        let playAgain = $('#return-menu');
+        let returnMenu = $('#return-menu');
         let sidePlayAgain = $('#side-playAgain');
         let mute = $('#sound');
         let rules = $('#rules');
         let menu = $('#menu');
 
+        //sets medium mode as default by hiding cards on load 
+        $('.card-med').removeClass('remove');
+        $('.card-hard').addClass('remove');
+        game.cardArray = $.merge($('.card-easy'), $('.card-med'));
+
+        //cards = $.merge($('.card-easy'), $('.card-med'));
 
 
+        //sets difficulty based on btn pressed
+        //Selects easy mode and applies correct card array and styles
         easyBtn.on('click', () => {
                 mode.easyMode();
                 gameTime = 30;
@@ -31,6 +40,7 @@ $(document).ready(function() {
                 game.pairs = 4;
         });
 
+        //Selects medium mode and applies correct card array and styles
         mediumBtn.on('click', () => {
                 mode.medMode();
                 gameTime = 60;
@@ -40,6 +50,7 @@ $(document).ready(function() {
                 game.pairs = 6;
         });
 
+        //Selects hard mode and applies correct card array and styles
         hardBtn.on('click', () => {
                 mode.hardMode();
                 gameTime = 100;
@@ -50,7 +61,7 @@ $(document).ready(function() {
         });
 
 
-        //sets difficulty based on btn pressed
+
 
         //opens rules section
         rules.on('click', function() {
@@ -61,10 +72,14 @@ $(document).ready(function() {
 
         //initialises card game
         start.on('click', function() {
+                let value = $('#name').val();
 
-                if ($('#name').val() === '' || $('#name').val() === undefined) {
+                if (value === '') {
                         alert('Please enter your name');
 
+                }
+                else if(value.length >= 15){
+                        alert('Please enter a name with less than 15 characters');
                 }
                 else {
                         $('#startModal').modal('hide');
@@ -75,27 +90,29 @@ $(document).ready(function() {
         mute.on('click', function() {
                 game.audioController.muteMusic();
         });
-        //Allows game to be re
-        playAgain.on('click', function() {
+        //Opens start menu
+        returnMenu.on('click', function() {
 
                 $("#startModal").modal('show');
 
-                // game.startGame();
 
         });
 
+        //Stops game & opens start menu
         menu.on('click', function() {
                 game.stopGame();
                 $("#startModal").modal('show');
         });
 
+        //Restarts the current game
         sidePlayAgain.on('click', function() {
-                
-                      game.startGame();  
-                
+
+                game.startGame();
+
 
         });
 
+        //Event listener for card clicks, calls cardflip method
         cards.on('click', function() {
                 game.cardFlip(this);
         });
@@ -105,8 +122,10 @@ $(document).ready(function() {
 
 });
 
+//Class created to control all audio elements/functions
 class AudioController {
         constructor() {
+                //Sound files for audio
                 this.backgroundMusic = new Audio('assets/audio/bg-music/bg-music.mp3');
                 this.flipSound = new Audio('assets/audio/game-sounds/flip.wav');
                 this.matchSound = new Audio('assets/audio/game-sounds/match.mp3');
@@ -119,29 +138,34 @@ class AudioController {
                 this.soundBtn = $('#sound');
         }
 
+        //starts the background music
         startMusic() {
                 if (this.soundBtn.hasClass('fa-volume-up')) {
                         this.backgroundMusic.play();
                 }
         }
 
+        //stops the music and resets to the start of the track
         stopMusic() {
                 this.backgroundMusic.pause();
                 this.backgroundMusic.currentTime = 0;
         }
 
+        //plays card flip sound
         flip() {
                 if (this.soundBtn.hasClass('fa-volume-up')) {
                         this.flipSound.play();
                 }
         }
 
+        //plays the card match sound
         match() {
                 if (this.soundBtn.hasClass('fa-volume-up')) {
                         this.matchSound.play();
                 }
         }
 
+        //plays the end of game success sound
         success() {
                 if (this.soundBtn.hasClass('fa-volume-up')) {
                         this.stopMusic();
@@ -149,6 +173,8 @@ class AudioController {
                 }
 
         }
+
+        //plays the end of game fail sound
         fail() {
                 if (this.soundBtn.hasClass('fa-volume-up')) {
                         this.stopMusic();
@@ -156,6 +182,7 @@ class AudioController {
                 }
         }
 
+        //controls whether music is played depending upon the class applied
         muteMusic() {
 
                 if (this.soundBtn.hasClass('fa-volume-up')) {
@@ -173,6 +200,7 @@ class AudioController {
 
 }
 
+//Class to determine the score based on the users performance
 class ScoreController {
         constructor(cardsArray) {
                 this.failTitle = 'Fail';
@@ -190,6 +218,7 @@ class ScoreController {
                 this.scoreTitle = $('#scoreTitle');
                 this.scoreMessage = $('#endGameMessage');
         }
+        //resets the star score system
         resetScore() {
                 $('#star1').removeClass('star-gold');
                 $('#star2').removeClass('star-gold');
@@ -198,18 +227,21 @@ class ScoreController {
                 $('#star5').removeClass('star-gold');
         }
 
+        //applies the score fail screen
         fail() {
                 this.resetScore();
                 this.scoreTitle.html(this.failTitle);
                 this.scoreMessage.html(this.failMessage);
         }
 
+        //applies the one star message and score to user
         oneStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.oneStar);
                 $('#star1').addClass('star-gold');
         }
 
+        //applies the two star message and score to user
         twoStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.twoStar);
@@ -217,6 +249,7 @@ class ScoreController {
                 $('#star2').addClass('star-gold');
         }
 
+        //applies the three star message and score to user
         threeStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.threeStar);
@@ -225,6 +258,7 @@ class ScoreController {
                 $('#star3').addClass('star-gold');
         }
 
+        //applies the four star message and score to user
         fourStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.fourStar);
@@ -234,6 +268,7 @@ class ScoreController {
                 $('#star4').addClass('star-gold');
         }
 
+        //applies the five star message and score to user
         fiveStarMessage() {
                 this.scoreTitle.html(this.successTitle);
                 this.scoreMessage.html(this.fiveStar);
@@ -244,11 +279,12 @@ class ScoreController {
                 $('#star5').addClass('star-gold');
         }
 
+        //calculates the overall score for the users game
         scoreCalculator(timeRemaining, totalTime, turns) {
                 this.resetScore();
                 this.score = this.timeCalculator(timeRemaining, totalTime) + this.turnsCalculator(turns);
 
-                if (this.score >= 90) {
+                if (this.score >= 80) {
                         this.fiveStarMessage();
                 }
                 else if (this.score >= 70) {
@@ -257,23 +293,24 @@ class ScoreController {
                 else if (this.score >= 50) {
                         this.threeStarMessage();
                 }
-                else if (this.score >= 30) {
+                else if (this.score >= 40) {
                         this.twoStarMessage();
                 }
-                else if (this.score >= 20) {
+                else if (this.score >= 30) {
                         this.oneStarMessage();
                 }
         }
 
+        //calculates a score for the user based on the amount of time left
         timeCalculator(timeRemaining, totalTime) {
                 this.percentages = totalTime / 5;
                 this.oneStarTime = this.percentages * 0.5;
                 this.twoStarTime = this.percentages * 1.5;
                 this.threeStarTime = this.percentages * 2.5;
                 this.fourStarTime = this.percentages * 3.5;
-                this.fiveStarTime = this.percentages * 4.5;
+                this.fiveStarTime = this.percentages * 4.0;
 
-                //Calculate a score based on the amount of time remaining
+                //Calculates a score based on the amount of time remaining
 
                 if (timeRemaining >= this.fiveStarTime) {
                         return 50;
@@ -296,12 +333,13 @@ class ScoreController {
 
         }
 
+        //Calculates a score based on the amount of turns taken
         turnsCalculator(turns) {
-                this.oneStarTurns = this.numberOfCards * 3;
-                this.twoStarTurns = this.numberOfCards * 2.5;
-                this.threeStarTurns = this.numberOfCards * 2.1;
-                this.fourStarTurns = this.numberOfCards * 1.8;
-                this.fiveStarTurns = this.numberOfCards * 1.5;
+                this.oneStarTurns = this.numberOfCards * 2.5;
+                this.twoStarTurns = this.numberOfCards * 2.0;
+                this.threeStarTurns = this.numberOfCards * 1.8;
+                this.fourStarTurns = this.numberOfCards * 1.2;
+                this.fiveStarTurns = this.numberOfCards * 0.8;
 
                 if (turns <= this.fiveStarTurns) {
                         return 50;
@@ -320,6 +358,7 @@ class ScoreController {
                 }
         }
 
+        //sets the number of matches in the player dashboard
         matchDisplay(matches, pairs) {
                 let matchesEl = $('#matches');
                 let amountEl = $('#amount');
@@ -331,6 +370,7 @@ class ScoreController {
 
 }
 
+//Class which controls the difficulty selection
 class ModeSelection {
         constructor() {
                 this.easyBtn = $('#easy-mode');
@@ -338,6 +378,7 @@ class ModeSelection {
                 this.hardBtn = $('#hard-mode');
         }
         //applies the active class depending upon the button selected
+        //applies the classes necessary to play the game in easy mode
         easyMode() {
                 this.easyBtn.on('click', () => {
                         this.easyBtn.addClass('btn-active');
@@ -349,6 +390,7 @@ class ModeSelection {
                 });
         }
 
+        //applies the classes necessary to play the game in medium mode
         medMode() {
                 this.mediumBtn.on('click', () => {
                         this.mediumBtn.addClass('btn-active');
@@ -359,6 +401,8 @@ class ModeSelection {
                         $('.card-hard').addClass('remove');
                 });
         }
+
+        //applies the classes necessary to play the game in hard mode
         hardMode() {
                 this.hardBtn.on('click', () => {
                         this.hardBtn.addClass('btn-active');
@@ -373,7 +417,7 @@ class ModeSelection {
 }
 
 
-
+//Class which controls the card matching elements of the application
 class CardMatch {
         constructor(totalTime, cards) {
                 this.cardArray = cards;
@@ -385,6 +429,7 @@ class CardMatch {
                 this.numMatches;
                 this.pairs;
 
+                //instantiates the objects required for the gameplay
                 this.audioController = new AudioController();
                 this.score = new ScoreController(this.cardArray);
         }
@@ -403,34 +448,27 @@ class CardMatch {
                 }
         }
 
+        //hides the cards by removing the vissible class
         hideCard() {
                 $(this.cardArray).each(function() {
                         $(this).removeClass('visible');
                 });
         }
 
+        //sets the users name in the player dashboard
         setName() {
                 var playerName = $('#name').val();
 
                 $('#scoreName').html(playerName);
         }
 
-        configureTimeOut(audio, shuffle, timeR, busy, countdown, countdownFunc) {
-                setTimeout(() => {
-
-                        this.audioController.startMusic();
-                        this.shuffleCards(this.cardArray);
-                        this.busy = false;
-                        this.countDown = this.startCountdown();
-
-                }, 500);
-        }
-
+        //stops the music and clears the time interval
         stopGame() {
                 clearInterval(this.countDown);
                 this.audioController.stopMusic();
         }
 
+        //resets the UI and clears the time interval for the current game
         resetGame() {
                 clearInterval(this.countDown);
                 this.timer = this.timer.text(this.timeRemaining);
@@ -438,6 +476,7 @@ class CardMatch {
 
         }
 
+        //initialises the game upon start
         startGame() {
                 //call mode selection here
 
@@ -452,7 +491,7 @@ class CardMatch {
 
                 this.setName();
 
-
+                //shuffles cards and begins countdown of the timer
                 setTimeout(() => {
 
                         this.audioController.startMusic();
@@ -469,6 +508,7 @@ class CardMatch {
 
         }
 
+        //controls the timing of the game
         startCountdown() {
                 let counter = () => {
                         this.timeRemaining--;
@@ -483,6 +523,7 @@ class CardMatch {
 
         }
 
+        //shows fail modal and stops game/plays fail audio
         gameOver() {
                 clearInterval(this.countDown);
                 this.audioController.fail();
@@ -494,6 +535,7 @@ class CardMatch {
                 $('#scoreModal').modal('show');
         }
 
+        //shows the victory screen and plays the succes audio, along with generating user score
         victory() {
                 clearInterval(this.countDown);
                 this.audioController.success();
@@ -506,11 +548,11 @@ class CardMatch {
 
         }
 
-
+        //determines if card can be flipped and applies visible class if it can
         cardFlip(card) {
                 if (this.canCardFlip(card)) {
                         this.audioController.flip();
-                        
+
                         this.turns = this.turns.text(this.totalClicks);
                         $(card).addClass('visible');
 
@@ -526,12 +568,13 @@ class CardMatch {
 
         }
 
+        //checks for match between two cards based on the img source
         checkCardMatch(card) {
 
                 var currentCard = [this.getCardType(card), card];
                 var checkCard = [this.getCardType(this.cardToBeChecked), this.cardToBeChecked];
-                
-               
+
+
 
                 if (currentCard[0] === checkCard[0]) {
                         //Match
@@ -549,10 +592,11 @@ class CardMatch {
 
         }
 
+        //called when cards dont match, removes visibility for user
         cardNotMatch(card1, card2) {
                 this.busy = true;
 
-                
+
 
                 setTimeout(() => {
 
@@ -562,19 +606,19 @@ class CardMatch {
                         this.busy = false;
 
                 }, 1000);
-                
-         this.totalClicks++;
-         
+
+                this.totalClicks++;
+
         }
 
-
+        //called when cards match, adds cards to matched array
         cardMatched(card1, card2) {
 
                 this.busy = true;
                 this.audioController.match();
                 setTimeout(() => {
                         this.busy = false;
-                }, 1500);
+                }, 1000);
 
                 this.matchedCards.push(card1[0]);
                 this.matchedCards.push(card2[0]);
@@ -588,11 +632,13 @@ class CardMatch {
 
         }
 
+        //retireves the image source from the card, so the items can be compared
         getCardType(card) {
                 let cardType = card.getElementsByClassName('card-value')[0].src;
                 return cardType;
         }
 
+        //determines if the card can be flipped
         canCardFlip(card) {
 
                 let cardValue = this.getCardType(card);

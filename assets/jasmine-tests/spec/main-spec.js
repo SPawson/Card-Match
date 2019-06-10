@@ -112,19 +112,19 @@ describe('Check Start Modal functions work correctly', function() {
             expect(spy).toHaveBeenCalled()
         });
 
-        it('btn-active to be applied when easy function activated', function() {
+        it('btn-active to be applied when easy button clicked', function() {
 
-            var spy = spyOn(this.mode, 'easyMode').and.callThrough();
+            this.mode.easyMode();
+            $("#easy-mode").trigger("click");
 
-
-            expect($('#easy-mode')).toHaveClass('btn-active')
+            expect($("#easy-mode")).toHaveClass("btn-active");
         });
 
     });
 
     describe('Check medium mode functions correctly', function() {
         beforeEach(function() {
-            mode = new ModeSelection;
+            this.mode = new ModeSelection;
 
         });
 
@@ -138,22 +138,30 @@ describe('Check Start Modal functions work correctly', function() {
 
         it('medMode() should be called', function() {
 
-            var spy = spyOn(mode, 'medMode')
+            var spy = spyOn(this.mode, 'medMode')
 
-            mode.medMode();
+            this.mode.medMode();
 
             expect(spy).toHaveBeenCalled()
+        });
+        
+         it('btn-active to be applied when medium button clicked', function() {
+
+            this.mode.medMode();
+            $("#medium-mode").trigger("click");
+
+            expect($("#medium-mode")).toHaveClass("btn-active");
         });
 
     });
 
     describe('Check hard mode functions', function() {
         beforeEach(function() {
-            mode = new ModeSelection;
+            this.mode = new ModeSelection;
 
         });
 
-        it('mediumButton can be clicked', function() {
+        it('Hard button can be clicked', function() {
             var spyEvent = spyOnEvent($('#hard-mode'), 'click');
             $('#hard-mode').trigger("click");
             expect('click').toHaveBeenTriggeredOn($('#hard-mode'));
@@ -163,9 +171,9 @@ describe('Check Start Modal functions work correctly', function() {
 
         it('hardMode() should be called', function() {
 
-            var spy = spyOn(mode, 'hardMode')
+            var spy = spyOn(this.mode, 'hardMode')
 
-            mode.hardMode();
+            this.mode.hardMode();
 
             expect(spy).toHaveBeenCalled()
         });
@@ -176,6 +184,15 @@ describe('Check Start Modal functions work correctly', function() {
 
             expect(hardBtn).toHaveClass('btn-active')
         });
+        
+           it('btn-active to be applied when hard button clicked', function() {
+
+            this.mode.hardMode();
+            $("#hard-mode").trigger("click");
+
+            expect($("#hard-mode")).toHaveClass("btn-active");
+        });
+
 
     });
 
@@ -184,12 +201,14 @@ describe('Check Start Modal functions work correctly', function() {
     describe('Check rules function', function() {
 
 
-        it('mediumButton can be clicked', function() {
+        it('rules button can be clicked', function() {
             var spyEvent = spyOnEvent($('#rules'), 'click');
             $('#rules').trigger("click");
             expect('click').toHaveBeenTriggeredOn($('#rules'));
             expect(spyEvent).toHaveBeenTriggered();
         })
+        
+        
 
     });
 
@@ -225,6 +244,14 @@ describe('Check Start Modal functions work correctly', function() {
 
 describe('Player control dashboard functionality', function() {
 
+    beforeEach(function() {
+        var cards = ['Danny', 'Jon', 'Arya', 'Tyrion', 'mel', 'White', 'Jaime', 'Bran'];
+
+        this.game = new CardMatch(100, cards);
+
+        this.score = new ScoreController(cards);
+
+    });
 
     beforeEach(function() {
         setFixtures(`
@@ -248,48 +275,64 @@ describe('Player control dashboard functionality', function() {
                         
         `)
     });
-    
-     beforeEach(function() {
-        setFixtures(`
-        
-        <div class="row icons-container">
-                        <div class="col-4 icon-container">
-                            <div class="background-icon">
-                                <i id="menu" class="fas fa-bars icon"></i>
-                            </div>
-                        </div>
-                        <div  class="col-4 icon-container">
-                            <div class="background-icon ">
-                                <i id="sound" class="fas fa-volume-up icon"></i>
-                            </div>
-                        </div>
-                        <div class="col-4 icon-container">
-                            <div class="background-icon">
-                                <i id="side-playAgain" class="fas fa-redo-alt icon"></i>
-                            </div>
-                        </div>
-                        
-        `)
-    });
-    
-    beforeEach(function() {
-    this.game
-    });
 
 
-    it('Menu button can be clicked', function() {
-      var spyEvent = spyOnEvent($('#menu'), 'click');
+    describe('Menu button functionality', function() {
+        it('Menu button can be clicked', function() {
+            var spyEvent = spyOnEvent($('#menu'), 'click');
             $('#menu').trigger("click");
             expect('click').toHaveBeenTriggeredOn($('#menu'));
             expect(spyEvent).toHaveBeenTriggered();
+        });
+
+        it('stopGame() should be called', function() {
+
+            var spy = spyOn(this.game, 'stopGame')
+
+            this.game.stopGame();
+
+            expect(spy).toHaveBeenCalled()
+        });
     });
-    
-     it('Sound button can be clicked', function() {
-      var spyEvent = spyOnEvent($('#sound'), 'click');
+
+    describe('Mute button functionality', function() {
+
+        it('Sound button can be clicked', function() {
+            var spyEvent = spyOnEvent($('#sound'), 'click');
             $('#sound').trigger("click");
             expect('click').toHaveBeenTriggeredOn($('#sound'));
             expect(spyEvent).toHaveBeenTriggered();
-    });
-        
-})
+        });
 
+        it('muteMusic() should be called', function() {
+
+            var spy = spyOn(this.game.audioController, 'muteMusic')
+
+            this.game.audioController.muteMusic();
+
+            expect(spy).toHaveBeenCalled()
+        });
+
+    });
+
+    describe('play again button functionality', function() {
+
+        it('play again button can be clicked', function() {
+            var spyEvent = spyOnEvent($('#side-playAgain'), 'click');
+            $('#side-playAgain').trigger("click");
+            expect('click').toHaveBeenTriggeredOn($('#side-playAgain'));
+            expect(spyEvent).toHaveBeenTriggered();
+        });
+
+        it('muteMusic() should be called', function() {
+
+            var spy = spyOn(this.game.audioController, 'muteMusic')
+
+            this.game.audioController.muteMusic();
+
+            expect(spy).toHaveBeenCalled()
+        });
+
+    });
+
+})
