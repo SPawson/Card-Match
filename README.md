@@ -172,6 +172,18 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 <h2>Deployment</h2>
 
 <p>I have deployed this project using Github live pages and this can be found <a target="_blank" href="https://spawson.github.io/Card-Match/"> here.</a></p>
+
+<p>To deploy Match Them All to GitHub pages from its repository, the following steps can be/were taken:</p>
+<ol>
+<li>Log in to GitHub. </li>
+<li>From the repository screen, select the project, in this case Match Them All. </li>
+<li>From the menu items near to the top of the page, go into settings. </li>
+<li>Scroll until you reach the GitHub pages section. </li>
+<li>In the source tab, the drop down menu labelled as none should be changes to Master Branch. </li>
+<li>After selecting this, the application is now deployed onto GitHub pages. </li>
+<li>The link to the site can be retrieved from this section and shared with others. </li>
+</ol>
+
 <hr>
 
 <h2>Credits</h2>
