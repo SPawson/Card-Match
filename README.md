@@ -149,7 +149,7 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 <li>I encountered an issue where the audio would start to play again when the game was finished and reset. This then had to be pressed again in order to activate the mute function. </li>
 <li>I encountered an issue where the difficulty buttons would not change the number of cards being used or the amount of time and would display a console error. </li>
 <li>I encountered an issue where the start modal on Internet explorer would not load and therefore would prevent the user from being able to play the game. </li>
-
+<li>I encountered an issue on Safari where the card would not display the image of the flipped card correctly and would invert the back of the card image instead. This meant the user was unable to see what character was on the card until both had cards had been clicked.</li>
 
 </ul>
 
@@ -161,9 +161,10 @@ The project uses Bootstrap 4.3.1 framework and a variety of imported classes in 
 <li>I found that I had placed all of the controls for audio system inside of the CardMatch.startGame() function. As a result, everytime this function was called due to the game being reset. I was restarting the music despite the mute button being pressed on the previous game. In order to resolve this, I had to place the click functionality outside of the startGame function, so that it would not reset this when the game was restarted. </li>
 
 <li>I found initially that when I tried to change the difficulty. I was applying the changes to two global variables, which were being used to create the instance of the CardMatch class. However, I had not realised that these values were not taking effect as the instance of the class had already been created when the difficulty functions were being activated. Therefore, to resolve this, I changed the difficulty functions so that they would apply the changes in value to the class properties. </li>
+<li>I found that the issue on Safari with the card image showing was caused by the card-front div not inheriting the css transform-style: preserve-3d. As a result this was causing the back card image to flip and invert, instead of showing the card image. To correct this I added the property into the common card style for both styles and this now works as expected.</li>
 
 <h3>Unsolved Bugs</h3>
-<li>I need to carry out further testing and functionality checks with Internet explorer. This is due a few features not working correctly as a result of me using ES6 Javascript and certain CSS properties which are not fully supported by the browser. The kinds of issues I am seeing is with the grid property and the classes I have used within my Javascript. My goal is to carry out resolving certain issues until I can get the application running as intended in IE, however I cannot complete these fully as I haven’t found an effective solution. </li>
+<li>I need to carry out further testing and functionality checks with Internet explorer. This is due a few features not working correctly as a result of me using ES6 Javascript and certain CSS properties which are not fully supported by the browser. The kinds of issues I am seeing is with the grid property and the classes I have used within my Javascript. My goal is to carry on resolving certain issues until I can get the application running as intended in IE, however I cannot complete these fully as I haven’t found an effective solution at this moment in time. </li>
 
 <li>When testing on Safari, I have encountered a few known bugs in regard to playing audio files. This means that certain audio files do not always play at the correct times. I have also seen issues with the amount of audio files being played at one time. I have not yet been able to find an effective solution. </li>
 
