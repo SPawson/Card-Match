@@ -23,11 +23,11 @@
 <h4>Accessing the tests</h4>
 
 <ul>
-<li>The Jasmine HTML page can be found <a href=”../../jasmine-tests/jasmine-testing.html” target=”_blank”>here</a></li>
+<li>The Jasmine HTML page can be found <a href=”assets/jasmine-tests/jasmine-testing.html” target=”_blank”>here</a></li>
 
-<li>The Jasmine specification (test) file can be found <a href=”../../jasmine-tests/spec/main-spec.js” target=”_blank”>here</a></li>
+<li>The Jasmine specification (test) file can be found <a href=”assets/jasmine-tests/spec/main-spec.js” target=”_blank”>here</a></li>
 
-<li>The Javascript functions being tested can be found in my main js file <a href=”../../js/main.js” target=”_blank”>here</a></li>
+<li>The Javascript functions being tested can be found in my main js file <a href=”assets/js/main.js” target=”_blank”>here</a></li>
 </ul>
 
 <p>In order for you to run the test files that I have created for my project. The entire project should be cloned from GitHub so that it can be run on a local machine. </p>
