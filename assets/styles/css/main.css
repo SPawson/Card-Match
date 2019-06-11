@@ -10,8 +10,12 @@ body {
     padding: 0px;
     overflow-x: hidden;
     font-family: 'Cinzel', serif;
+    background-color: #222;
 }
 
+body.modal-open {
+    overflow: hidden;
+}
 
 /********************
     Text
@@ -58,13 +62,6 @@ h1 {
     min-height: 100vh;
 }
 
-/********************
-    Game-Container
-*********************/
-
-.game-container {
-    background-color: #222;
-}
 
 /********************
     Game-info-Container
@@ -75,8 +72,8 @@ h1 {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     color: white;
     margin: 45px auto;
 
@@ -113,7 +110,7 @@ h1 {
     background-color: transparent;
     position: relative;
     -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
+    transform-style: preserve-3d;
     -webkit-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
@@ -125,7 +122,8 @@ h1 {
 
 .card.visible {
     -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
+    transform: rotateY(180deg);
+
 }
 
 .card-face {
@@ -136,20 +134,26 @@ h1 {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
+    -ms-flex-align: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    
+    -webkit-transition: 200ms ease-in-out;
+    -o-transition: 200ms ease-in-out;
+    transition: 200ms ease-in-out;
 }
 
 .card-back {
     position: absolute;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     -webkit-transition: 200ms ease-in-out;
     -o-transition: 200ms ease-in-out;
     transition: 200ms ease-in-out;
@@ -157,14 +161,16 @@ h1 {
 
 .card-back img:hover {
     -webkit-transform: scale(0.99);
-        -ms-transform: scale(0.99);
-            transform: scale(0.99);
+    -ms-transform: scale(0.99);
+    transform: scale(0.99);
 }
 
 .card-front {
     position: absolute;
     -webkit-transform: rotateY(180deg);
-            transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 
 }
 
@@ -207,7 +213,7 @@ h1 {
     color: #ffcc37;
 }
 
-.score{
+.score {
     font-size: 2.0rem;
     margin-bottom: 15px;
 }
@@ -235,8 +241,12 @@ h1 {
 
 }
 
-.icon:hover{
+.icon:hover {
     background-color: #656262
+}
+
+.desc-title{
+    margin: 0 auto;
 }
 
 /********************
@@ -265,7 +275,7 @@ h1 {
     border-color: #734848;
 }
 
-.modal-title{
+.modal-title {
     margin: 0 auto;
 }
 
@@ -296,7 +306,7 @@ h1 {
 #hard-mode:focus {
     outline: none;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
 }
 
 .btn-easy {
@@ -346,6 +356,27 @@ h1 {
     Media Queries
 *********************/
 
+@media(max-width: 400px){
+    .card-container {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto 30px auto 30px auto 30px auto;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 30px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 45px;
+}
+
+.mode-select {
+    margin: 15px auto;
+}
+    
+}
+
+
 @media(min-width: 768px) {
     .card {
         height: 160px;
@@ -382,4 +413,9 @@ h1 {
         width: 90px;
         margin-bottom: 10px;
     }
+    
+    .score-container {
+    background-color: #733e3e;
+    min-height: 100vh;
+}
 }
