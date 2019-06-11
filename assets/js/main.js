@@ -78,7 +78,7 @@ $(document).ready(function() {
                         alert('Please enter your name');
 
                 }
-                else if(value.length >= 15){
+                else if (value.length >= 15) {
                         alert('Please enter a name with less than 15 characters');
                 }
                 else {
@@ -92,7 +92,12 @@ $(document).ready(function() {
         });
         //Opens start menu
         returnMenu.on('click', function() {
-
+                 game.stopGame();
+                $('#startModalCenterTitle').remove();
+                $('#startModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                });
                 $("#startModal").modal('show');
 
 
@@ -100,7 +105,12 @@ $(document).ready(function() {
 
         //Stops game & opens start menu
         menu.on('click', function() {
+                $('#startModalCenterTitle').remove();
                 game.stopGame();
+                $('#startModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                });
                 $("#startModal").modal('show');
         });
 
