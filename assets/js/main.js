@@ -437,7 +437,7 @@ class CardMatch {
                 this.turns = $('#turns-count');
                 this.totalClicks = 0;
                 this.numMatches;
-                this.pairs;
+                this.pairs = 6;
 
                 //instantiates the objects required for the gameplay
                 this.audioController = new AudioController();
@@ -526,7 +526,7 @@ class CardMatch {
                         if (this.timeRemaining === 0) {
                                 this.gameOver();
                         }
-                }
+                };
 
                 return setInterval(counter, 1000);
 
